@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2021-01-21T13:14:07.849Z" agent="5.0 (Windows)" etag="OqztHNSDdtq9D5aRNYZB" version="14.2.6" type="github">
+<mxfile host="app.diagrams.net" modified="2021-01-21T13:32:49.438Z" agent="5.0 (Windows)" etag="GJ_xwwokSrYp-S00-k3b" version="14.2.6" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
-    <mxGraphModel dx="1287" dy="790" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2330" dy="791" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
@@ -98,7 +98,7 @@
           <mxGeometry x="40" width="140" height="30" as="geometry" />
         </mxCell>
         <mxCell id="OkiWoQopOx5-v4XApyoQ-32" value="&lt;div&gt;Entrada&lt;/div&gt;" style="shape=table;html=1;whiteSpace=wrap;startSize=30;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
-          <mxGeometry x="-280" y="120" width="180" height="180" as="geometry" />
+          <mxGeometry x="-280" y="120" width="180" height="240" as="geometry" />
         </mxCell>
         <mxCell id="OkiWoQopOx5-v4XApyoQ-33" value="" style="shape=partialRectangle;html=1;whiteSpace=wrap;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;top=0;left=0;bottom=1;right=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="OkiWoQopOx5-v4XApyoQ-32" vertex="1">
           <mxGeometry y="30" width="180" height="30" as="geometry" />
@@ -231,6 +231,12 @@
         </mxCell>
         <mxCell id="l5njIW0t3AVGMVYJMJSJ-11" value="" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;" vertex="1" parent="l5njIW0t3AVGMVYJMJSJ-9">
           <mxGeometry x="40" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="l5njIW0t3AVGMVYJMJSJ-12" value="6" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="-280" y="300" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="l5njIW0t3AVGMVYJMJSJ-13" value="Capacidad_Actual" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="-240" y="300" width="140" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
