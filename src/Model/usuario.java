@@ -12,17 +12,23 @@ public class usuario {
 	private Date dFechaNC;
 	private String sContraseña;
 	
-	
-	
 	public usuario() {
 		
 	}
 	
-	
+	public usuario(int iId_usuario, String sNombre, String sApellido, int iN_Telefono, String sEmail, Date dFechaNC,
+			String sContraseña) {
+		super();
+		this.iId_usuario = iId_usuario;
+		this.sNombre = sNombre;
+		this.sApellido = sApellido;
+		this.iN_Telefono = iN_Telefono;
+		this.sEmail = sEmail;
+		this.dFechaNC = dFechaNC;
+		this.sContraseña = sContraseña;
+	}
 
-	
-	
-	
+
 	public int getiId_usuario() {
 		return iId_usuario;
 	}
