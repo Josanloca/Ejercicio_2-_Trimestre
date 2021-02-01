@@ -1,20 +1,24 @@
 package view;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Start.principal;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JTextField;
 import java.awt.Toolkit;
-import java.awt.Canvas;
 import javax.swing.JButton;
-import javax.swing.JTable;
 import javax.swing.JPasswordField;
-import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
+
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.ActionEvent;
 
 public class login extends JFrame {
 
@@ -24,25 +28,22 @@ public class login extends JFrame {
 	private JTextField tfCorreo;
 	private JPasswordField passwordField;
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					login frame = new login();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
+
+	public login() {
+		
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				int reply = JOptionPane.showConfirmDialog(principal.frame, "Seguro que quieres salir?", "Advertencia", JOptionPane.YES_NO_OPTION);
+				if (reply == 0) {
+					System.exit(0);
 				}
 			}
 		});
-	}
-
-
-	
-	public login() {
+		
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Medac\\git\\Ejercicio_2-_Trimestre\\img\\icono.png"));
 		setTitle("Cine en casa - Login");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 300, 300);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.BLACK);
@@ -80,6 +81,15 @@ public class login extends JFrame {
 		contentPane.add(lblContraseña);
 		
 		JButton btnLogin = new JButton("login");
+		btnLogin.addActionListener(new ActionListener() {
+			
+			
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(principal.frame,"Conexion Correcta");
+			}
+			
+		});
+		btnLogin.setForeground(Color.LIGHT_GRAY);
 		btnLogin.setBorderPainted(false);
 		btnLogin.setFocusPainted(false);
 		btnLogin.setContentAreaFilled(false);
