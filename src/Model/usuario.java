@@ -16,9 +16,7 @@ public class usuario {
 		
 	}
 	
-	public usuario(int iId_usuario, String sNombre, String sApellido, int iN_Telefono, String sEmail, Date dFechaNC,
-			String sContraseña) {
-		super();
+	public usuario(int iId_usuario, String sNombre, String sApellido, int iN_Telefono, String sEmail, Date dFechaNC,String sContraseña) {
 		this.iId_usuario = iId_usuario;
 		this.sNombre = sNombre;
 		this.sApellido = sApellido;
@@ -76,8 +74,7 @@ public class usuario {
 	@Override
 	public String toString() {
 		return "usuario [iId_usuario=" + iId_usuario + ", sNombre=" + sNombre + ", sApellido=" + sApellido
-				+ ", iN_Telefono=" + iN_Telefono + ", sEmail=" + sEmail + ", dFechaNC=" + dFechaNC + ", sContraseña="
-				+ sContraseña + "]";
+				+ ", iN_Telefono=" + iN_Telefono + ", sEmail=" + sEmail + ", dFechaNC=" + dFechaNC + "]";
 	}
 	
 }
