@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Start.principal;
+import logic.logPrincipal;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -24,7 +25,7 @@ public class login extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
-	private JPanel contentPane;
+	public static JPanel contentPane;
 	private JTextField tfCorreo;
 	private JPasswordField passwordField;
 
@@ -74,21 +75,14 @@ public class login extends JFrame {
 		contentPane.add(tfCorreo);
 		tfCorreo.setColumns(10);
 		
-		JLabel lblContrase�a = new JLabel("Passw:");
-		lblContrase�a.setForeground(Color.WHITE);
-		lblContrase�a.setFont(new Font("Bebas Neue", Font.PLAIN, 25));
-		lblContrase�a.setBounds(15, 150, 65, 22);
-		contentPane.add(lblContrase�a);
+		JLabel lblContraseña = new JLabel("Passw:");
+		lblContraseña.setForeground(Color.WHITE);
+		lblContraseña.setFont(new Font("Bebas Neue", Font.PLAIN, 25));
+		lblContraseña.setBounds(15, 150, 65, 22);
+		contentPane.add(lblContraseña);
 		
 		JButton btnLogin = new JButton("login");
-		btnLogin.addActionListener(new ActionListener() {
-			
-			
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(principal.frame,"Conexion Correcta");
-			}
-			
-		});
+
 		btnLogin.setForeground(Color.LIGHT_GRAY);
 		btnLogin.setBorderPainted(false);
 		btnLogin.setFocusPainted(false);
@@ -101,5 +95,22 @@ public class login extends JFrame {
 		passwordField.setFont(new Font("SansSerif", Font.PLAIN, 20));
 		passwordField.setBounds(95, 150, 180, 25);
 		contentPane.add(passwordField);
+		
+
+			btnLogin.addActionListener(new ActionListener() {
+				
+				public void actionPerformed(ActionEvent e) {
+					String sX="x";
+						
+					if(logPrincipal.LoginUsuario(lblCorreo,lblContraseña).equals("ok")) {
+						sX = "Conexion Correcta";
+					}else {
+						sX = "Conexion Erronea";
+					}
+
+					JOptionPane.showMessageDialog(principal.frame,sX);
+				}
+			});
+
 	}
 }

@@ -10,20 +10,20 @@ public class usuario {
 	private int iN_Telefono;
 	private String sEmail;
 	private Date dFechaNC;
-	private String sContraseña;
+	private String sContrasena;
 	
 	public usuario() {
 		
 	}
 	
-	public usuario(int iId_usuario, String sNombre, String sApellido, int iN_Telefono, String sEmail, Date dFechaNC,String sContraseña) {
+	public usuario(int iId_usuario, String sNombre, String sApellido, int iN_Telefono, String sEmail, Date dFechaNC,String sContrasena) {
 		this.iId_usuario = iId_usuario;
 		this.sNombre = sNombre;
 		this.sApellido = sApellido;
 		this.iN_Telefono = iN_Telefono;
 		this.sEmail = sEmail;
 		this.dFechaNC = dFechaNC;
-		this.sContraseña = sContraseña;
+		this.sContrasena = sContrasena;
 	}
 
 
@@ -64,11 +64,11 @@ public class usuario {
 		this.dFechaNC = dFechaNC;
 	}
 
-	public String getsContraseña() {
-		return sContraseña;
+	public String getsContrasena() {
+		return sContrasena;
 	}
-	public void setsContraseña(String sContraseña) {
-		this.sContraseña = sContraseña;
+	public void setsContrasena(String sContrasena) {
+		this.sContrasena = sContrasena;
 	}
 
 	@Override
