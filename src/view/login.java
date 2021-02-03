@@ -3,6 +3,7 @@ package view;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 import Start.principal;
 import logic.logPrincipal;
@@ -20,6 +21,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 public class login extends JFrame {
 
@@ -43,25 +47,38 @@ public class login extends JFrame {
 		});
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Medac\\git\\Ejercicio_2-_Trimestre\\img\\icono.png"));
+		
 		setTitle("Cine en casa - Login");
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 300, 300);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenu menuLogin = new JMenu("Ayuda");
+		menuBar.add(menuLogin);
+		
+		JMenuItem btnMenNuevoUsuario = new JMenuItem("No tengo cuenta");
+		btnMenNuevoUsuario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		menuLogin.add(btnMenNuevoUsuario);
+		
+		JMenuItem btnMenAdmin = new JMenuItem("Administracion");
+		btnMenAdmin.setEnabled(false);
+		menuLogin.add(btnMenAdmin);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.BLACK);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("login");
-		lblNewLabel.setFont(new Font("Bebas Neue", Font.PLAIN, 25));
-		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setBounds(120, 58, 44, 22);
-		contentPane.add(lblNewLabel);
-		
 		JLabel titulo = new JLabel("Cine en casa");
 		titulo.setForeground(new Color(229, 9, 20));
 		titulo.setFont(new Font("Bebas Neue", Font.PLAIN, 30));
-		titulo.setBounds(80, 11, 123, 36);
+		titulo.setBounds(80, 30, 123, 36);
 		contentPane.add(titulo);
 		
 		JLabel lblCorreo = new JLabel("Correo:");
@@ -83,12 +100,11 @@ public class login extends JFrame {
 		
 		JButton btnLogin = new JButton("login");
 
-		btnLogin.setForeground(Color.LIGHT_GRAY);
+		btnLogin.setForeground(Color.BLACK);
 		btnLogin.setBorderPainted(false);
-		btnLogin.setFocusPainted(false);
-		btnLogin.setContentAreaFilled(false);
+		btnLogin.setBorder(new LineBorder(Color.BLACK));
 		btnLogin.setFont(new Font("Bebas Neue", Font.PLAIN, 25));
-		btnLogin.setBounds(97, 203, 90, 28);
+		btnLogin.setBounds(95, 187, 90, 28);
 		contentPane.add(btnLogin);
 		
 		passwordField = new JPasswordField();
@@ -101,14 +117,16 @@ public class login extends JFrame {
 				
 				public void actionPerformed(ActionEvent e) {
 					String sX="x";
-						
-					if(logPrincipal.LoginUsuario(lblCorreo,lblContraseña).equals("ok")) {
-						sX = "Conexion Correcta";
+					if(tfCorreo.getText().toString().equals("") && passwordField.getText().toString().equals("123")) {
+						btnMenAdmin.setEnabled(true);
 					}else {
-						sX = "Conexion Erronea";
-					}
-
-					JOptionPane.showMessageDialog(principal.frame,sX);
+						if(logPrincipal.LoginUsuario(tfCorreo,passwordField).equals("ok")) {
+							sX = "Conexion Correcta";
+						}else {
+							sX = "Conexion Erronea";
+						}
+						JOptionPane.showMessageDialog(principal.frame,sX);
+					}					
 				}
 			});
 
