@@ -22,7 +22,7 @@ public class logPrincipal {
 
 		String x;
 		try {
-			x = ControllerPHP.peticionHttp("http://15.237.93.98/login.php?sEmail="+tfCorreo.getText().toString()+"&sContraseña="+passwordField.getText().toString());
+			x = ControllerPHP.peticionHttp("http://15.237.93.98/login.php?sEmail="+tfCorreo.getText().toString()+"&sContrasena="+passwordField.getText().toString());
 			System.out.println(x);
 			sResultado = x;
 			usuario oUs = jsonToUsuario(ControllerPHP.peticionHttp("http://15.237.93.98/get-usuario.php?email="+tfCorreo.getText().toString()));
@@ -47,10 +47,10 @@ public class logPrincipal {
 		Integer numeroTelefono = jsonObject.getInt("numeroTelefono");
 		String email = jsonObject.getString("email");
 		String fecha = jsonObject.getString("fecha");
-		String contraseña = jsonObject.getString("contraseña");
+		String contrasena = jsonObject.getString("contrase�a");
 		
-		System.out.println(""+id_usuario+" "+nombre+" "+apellido+" "+numeroTelefono+" "+email+" "+fecha+" "+contraseña);
-		return new usuario(id_usuario,nombre,apellido,numeroTelefono,email,transformadorStringDate(fecha),contraseña);
+		System.out.println(""+id_usuario+" "+nombre+" "+apellido+" "+numeroTelefono+" "+email+" "+fecha+" "+contrasena);
+		return new usuario(id_usuario,nombre,apellido,numeroTelefono,email,transformadorStringDate(fecha),contrasena);
 	}
 	
 	

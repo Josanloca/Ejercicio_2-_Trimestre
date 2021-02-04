@@ -27,17 +27,15 @@ import view.nuevoUsuario;
 public class logNuevoUsuario {
 	
 	private static File archivo;
-	private static String sText;
+	private static String sText="";
 
 	
-	public static void introducirNuevoUsuario(JTextField tfNombre, JTextField tfApellido, JTextField tfNTelefono, JTextField tfEmail, JTextField tfContraseña) {
-		String sResultado="";
+	public static void introducirNuevoUsuario(JTextField tfNombre, JTextField tfApellido, JTextField tfNTelefono, String sFecha, JTextField tfEmail, JTextField tfContrasena) {
 
-		String x;
 		try {
-
-			ControllerPHP.peticionHttp("http://15.237.93.98/get-usuario.php?email=");
+			String sTring = "http://15.237.93.98/set_new_user.php?nombre="+tfNombre.getText().toString()+"&apellido="+tfApellido.getText().toString()+"&numeroTelefono="+tfNTelefono.getText().toString()+"&email="+tfEmail.getText().toString()+"&fecha="+sFecha+"&contrasena="+tfContrasena.getText().toString();
 			
+			ControllerPHP.peticionHttp(sTring);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

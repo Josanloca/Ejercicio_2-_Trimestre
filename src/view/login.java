@@ -93,11 +93,11 @@ public class login extends JFrame {
 		contentPane.add(tfCorreo);
 		tfCorreo.setColumns(10);
 		
-		JLabel lblContraseña = new JLabel("Passw:");
-		lblContraseña.setForeground(Color.WHITE);
-		lblContraseña.setFont(new Font("Bebas Neue", Font.PLAIN, 25));
-		lblContraseña.setBounds(15, 150, 65, 22);
-		contentPane.add(lblContraseña);
+		JLabel lblContrasena = new JLabel("Passw:");
+		lblContrasena.setForeground(Color.WHITE);
+		lblContrasena.setFont(new Font("Bebas Neue", Font.PLAIN, 25));
+		lblContrasena.setBounds(15, 150, 65, 22);
+		contentPane.add(lblContrasena);
 		
 		JButton btnLogin = new JButton("login");
 

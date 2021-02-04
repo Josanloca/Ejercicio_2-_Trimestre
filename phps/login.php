@@ -2,7 +2,7 @@
 
 require_once("conexion.php");
 
-$sql = "SELECT id_usuario FROM usuario WHERE email = "."'".$_GET["sEmail"]."' AND contraseña = '".$_GET["sContraseña"]."'";
+$sql = "SELECT id_usuario FROM usuario WHERE email = "."'".$_GET["sEmail"]."' AND contraseña = '".$_GET["sContrasena"]."'";
 
 $result = $conn->query($sql);
 

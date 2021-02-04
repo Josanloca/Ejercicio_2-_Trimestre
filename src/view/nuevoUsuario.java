@@ -38,7 +38,7 @@ public class nuevoUsuario extends JDialog {
 	public static JLabel lblImagen;
 	private JButton okButton;
 	private JButton cancelButton;
-	private JTextField tfContraseña;
+	private JTextField tfContrasena;
 
 
 	public nuevoUsuario() {
@@ -118,10 +118,10 @@ public class nuevoUsuario extends JDialog {
 		tfEmail.setBounds(133, 193, 171, 20);
 		contentPanel.add(tfEmail);
 		
-		tfContraseña = new JTextField();
-		tfContraseña.setColumns(10);
-		tfContraseña.setBounds(133, 224, 171, 20);
-		contentPanel.add(tfContraseña);
+		tfContrasena = new JTextField();
+		tfContrasena.setColumns(10);
+		tfContrasena.setBounds(133, 224, 171, 20);
+		contentPanel.add(tfContrasena);
 		
 		lblImagen = new JLabel("Imagen");
 		lblImagen.setHorizontalAlignment(SwingConstants.CENTER);
@@ -132,7 +132,6 @@ public class nuevoUsuario extends JDialog {
 		contentPanel.add(lblImagen);
 		
 		JDateChooser dateChooser = new JDateChooser("yyyy/MM/dd", "####/##/##", '_');
-		
 		dateChooser.setBounds(133, 253, 171, 20);
 		contentPanel.add(dateChooser);
 
@@ -147,12 +146,6 @@ public class nuevoUsuario extends JDialog {
 			JButton btnNewButton = new JButton("Seleccionar imagen");
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					String pattern = "yyyy-MM-dd";
-					SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-					System.out.println(simpleDateFormat.format(dateChooser.getDate()));
-					
-					logNuevoUsuario.introducirNuevoUsuario(tfNombre,tfApellido,tfNTelefono,tfEmail,tfContraseña);
-					
 					logNuevoUsuario.seleccionarFichero();
 				}
 			});
@@ -160,6 +153,11 @@ public class nuevoUsuario extends JDialog {
 				okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						String pattern = "yyyy-MM-dd";
+						SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+						String sFecha = simpleDateFormat.format(dateChooser.getDate());
+						
+						logNuevoUsuario.introducirNuevoUsuario(tfNombre,tfApellido,tfNTelefono,sFecha,tfEmail,tfContrasena);
 						logNuevoUsuario.upload();
 					}
 				});
