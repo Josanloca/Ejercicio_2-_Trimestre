@@ -3,7 +3,6 @@ package logic;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -17,15 +16,16 @@ public class logPrincipal {
 	
 	public static usuario oUsuarioGeneral;
 	
+	@SuppressWarnings("deprecation")
 	public static String LoginUsuario(JTextField tfCorreo, JPasswordField passwordField) {
 		String sResultado="";
 
 		String x;
 		try {
-			x = ControllerPHP.peticionHttp("http://josanloca.000webhostapp.com/php/login.php?sEmail="+tfCorreo.getText().toString()+"&sContraseña="+passwordField.getText().toString());
+			x = ControllerPHP.peticionHttp("http://15.237.93.98/login.php?sEmail="+tfCorreo.getText().toString()+"&sContraseña="+passwordField.getText().toString());
 			System.out.println(x);
 			sResultado = x;
-			usuario oUs = jsonToUsuario(ControllerPHP.peticionHttp("http://josanloca.000webhostapp.com/php/get-usuario.php?email="+tfCorreo.getText().toString()));
+			usuario oUs = jsonToUsuario(ControllerPHP.peticionHttp("http://15.237.93.98/get-usuario.php?email="+tfCorreo.getText().toString()));
 			
 			oUsuarioGeneral=oUs;
 			

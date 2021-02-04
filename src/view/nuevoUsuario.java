@@ -1,50 +1,54 @@
 package view;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Start.principal;
+import com.toedter.calendar.JCalendar;
+import com.toedter.calendar.JDateChooser;
+
+import logic.logNuevoUsuario;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.awt.event.ActionEvent;
+import java.awt.Panel;
 
 public class nuevoUsuario extends JDialog {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField tfNombre;
 	private JTextField tfApellido;
 	private JTextField tfNTelefono;
-	private JTextField tfEmail;
-	private JTextField textField_5;
+	public static JTextField tfEmail;
 	public static JLabel lblImagen;
+	private JButton okButton;
+	private JButton cancelButton;
+	private JTextField tfContraseña;
 
 
 	public nuevoUsuario() {
+		setModal(true);
 		setTitle("Cine en casas - Nuevo usuario");
 		
-		addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				int reply = JOptionPane.showConfirmDialog(principal.frame, "Seguro que quieres salir?", "Advertencia", JOptionPane.YES_NO_OPTION);
-				if (reply == 0) {
-					System.exit(0);
-				}}
-		});
 		setAlwaysOnTop(true);
 		setResizable(false);
 		
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 340, 385);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(Color.BLACK);
@@ -114,15 +118,10 @@ public class nuevoUsuario extends JDialog {
 		tfEmail.setBounds(133, 193, 171, 20);
 		contentPanel.add(tfEmail);
 		
-		JTextField tfCo = new JTextField();
-		tfCo.setColumns(10);
-		tfCo.setBounds(133, 224, 171, 20);
-		contentPanel.add(tfCo);
-		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(133, 255, 171, 20);
-		contentPanel.add(textField_5);
+		tfContraseña = new JTextField();
+		tfContraseña.setColumns(10);
+		tfContraseña.setBounds(133, 224, 171, 20);
+		contentPanel.add(tfContraseña);
 		
 		lblImagen = new JLabel("Imagen");
 		lblImagen.setHorizontalAlignment(SwingConstants.CENTER);
@@ -131,21 +130,61 @@ public class nuevoUsuario extends JDialog {
 		lblImagen.setBackground(Color.WHITE);
 		lblImagen.setBounds(228, 8, 76, 76);
 		contentPanel.add(lblImagen);
+		
+		JDateChooser dateChooser = new JDateChooser("yyyy/MM/dd", "####/##/##", '_');
+		
+		dateChooser.setBounds(133, 253, 171, 20);
+		contentPanel.add(dateChooser);
+
+		
+		Panel panel = new Panel();
+		panel.setBounds(228, 74, 76, -72);
+		contentPanel.add(panel);
 		{
 			JPanel buttonPane = new JPanel();
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
+			
+			JButton btnNewButton = new JButton("Seleccionar imagen");
+			btnNewButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String pattern = "yyyy-MM-dd";
+					SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+					System.out.println(simpleDateFormat.format(dateChooser.getDate()));
+					
+					logNuevoUsuario.introducirNuevoUsuario(tfNombre,tfApellido,tfNTelefono,tfEmail,tfContraseña);
+					
+					logNuevoUsuario.seleccionarFichero();
+				}
+			});
 			{
-				JButton okButton = new JButton("OK");
+				okButton = new JButton("OK");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						logNuevoUsuario.upload();
+					}
+				});
 				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
+				cancelButton = new JButton("Cancel");
 				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
 			}
+			GroupLayout gl_buttonPane = new GroupLayout(buttonPane);
+			gl_buttonPane.setHorizontalGroup(
+				gl_buttonPane.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_buttonPane.createSequentialGroup()
+						.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
+						.addComponent(okButton, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
+						.addComponent(cancelButton, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE))
+			);
+			gl_buttonPane.setVerticalGroup(
+				gl_buttonPane.createParallelGroup(Alignment.LEADING)
+					.addComponent(btnNewButton)
+					.addComponent(okButton)
+					.addComponent(cancelButton)
+			);
+			buttonPane.setLayout(gl_buttonPane);
 		}
 	}
 }

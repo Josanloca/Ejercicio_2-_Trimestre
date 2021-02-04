@@ -61,7 +61,8 @@ public class login extends JFrame {
 		JMenuItem btnMenNuevoUsuario = new JMenuItem("No tengo cuenta");
 		btnMenNuevoUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				nuevoUsuario vNU = new nuevoUsuario();
+				vNU.setVisible(true);
 			}
 		});
 		menuLogin.add(btnMenNuevoUsuario);
