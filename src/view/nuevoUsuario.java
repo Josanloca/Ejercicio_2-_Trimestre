@@ -33,7 +33,6 @@ public class nuevoUsuario extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	public static JPanel contentPanel = new JPanel();
-	//public static nuevoUsuario bFrame = new nuevoUsuario();
 	private JTextField tfNombre;
 	private JTextField tfApellido;
 	public static JTextField tfNTelefono;
@@ -52,7 +51,7 @@ public class nuevoUsuario extends JDialog {
 		setResizable(false);
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 340, 385);
+		setBounds(100, 100, 350, 385);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(Color.BLACK);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -163,8 +162,13 @@ public class nuevoUsuario extends JDialog {
 				okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						Model.usuario oUsua = new usuario(tfNombre.getText().toString(),tfApellido.getText().toString(),15,tfEmail.getText().toString(),dateChooser.getDate(),tfContrasena.getText().toString());
-
+						Model.usuario oUsua = new usuario(
+								tfNombre.getText().toString(),
+								tfApellido.getText().toString(),
+								Integer.parseInt(tfNTelefono.getText().toString()),
+								tfEmail.getText().toString(),
+								dateChooser.getDate(),
+								tfContrasena.getText().toString());
 						CtrlNuevoUsuario.onclick_OK(oUsua);
 					}
 				});
@@ -185,22 +189,21 @@ public class nuevoUsuario extends JDialog {
 				gl_buttonPane.createParallelGroup(Alignment.LEADING)
 					.addGroup(gl_buttonPane.createSequentialGroup()
 						.addGap(6)
-						.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
-						.addGap(28)
-						.addComponent(okButton, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 148, GroupLayout.PREFERRED_SIZE)
 						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(okButton, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.UNRELATED)
 						.addComponent(cancelButton)
-						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addContainerGap(46, Short.MAX_VALUE))
 			);
 			gl_buttonPane.setVerticalGroup(
 				gl_buttonPane.createParallelGroup(Alignment.LEADING)
 					.addGroup(gl_buttonPane.createSequentialGroup()
 						.addContainerGap()
-						.addGroup(gl_buttonPane.createParallelGroup(Alignment.LEADING)
-							.addGroup(gl_buttonPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(cancelButton)
-								.addComponent(okButton))
-							.addComponent(btnNewButton))
+						.addGroup(gl_buttonPane.createParallelGroup(Alignment.BASELINE)
+							.addComponent(btnNewButton)
+							.addComponent(cancelButton)
+							.addComponent(okButton))
 						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 			);
 			buttonPane.setLayout(gl_buttonPane);

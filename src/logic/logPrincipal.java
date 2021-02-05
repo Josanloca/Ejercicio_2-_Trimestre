@@ -38,9 +38,7 @@ public class logPrincipal {
 	
 	private static usuario jsonToUsuario(String respuesta) {
 		JSONArray jsonArray = new JSONArray(respuesta);
-		System.out.println("no ha pasado");
 		JSONObject jsonObject = jsonArray.getJSONObject(0);
-		System.out.println("yes");
 		int id_usuario = jsonObject.getInt("id_usuario");
 		String nombre = jsonObject.getString("nombre");
 		String apellido = jsonObject.getString("apellido");
@@ -49,13 +47,14 @@ public class logPrincipal {
 		String fecha = jsonObject.getString("fecha");
 		String contrasena = jsonObject.getString("contraseña");
 		
-		System.out.println(""+id_usuario+" "+nombre+" "+apellido+" "+numeroTelefono+" "+email+" "+fecha+" "+contrasena);
+		//System.out.println(""+id_usuario+" "+nombre+" "+apellido+" "+numeroTelefono+" "+email+" "+fecha+" "+contrasena);
 		return new usuario(id_usuario,nombre,apellido,numeroTelefono,email,transformadorStringDate(fecha),contrasena);
 	}
 	
 	
-	private static Date transformadorStringDate(String respuesta) {
+	public static Date transformadorStringDate(String respuesta) {
 		Date date = null;
+		System.out.println(respuesta);
 		try {
 			
 			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -63,11 +62,11 @@ public class logPrincipal {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		
+		System.out.println(date);
 		return date ;
 	}
 	
 	
-	
+
 
 }

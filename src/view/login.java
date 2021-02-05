@@ -29,6 +29,7 @@ public class login extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
+	public static nuevoUsuario nUFrame = new nuevoUsuario();
 	public static JPanel contentPane;
 	private JTextField tfCorreo;
 	private JPasswordField passwordField;
@@ -61,8 +62,7 @@ public class login extends JFrame {
 		JMenuItem btnMenNuevoUsuario = new JMenuItem("No tengo cuenta");
 		btnMenNuevoUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				nuevoUsuario vNU = new nuevoUsuario();
-				vNU.setVisible(true);
+				nUFrame.setVisible(true);
 			}
 		});
 		menuLogin.add(btnMenNuevoUsuario);

@@ -8,6 +8,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.text.SimpleDateFormat;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,6 +20,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import Controller.ControllerPHP;
 import Model.usuario;
+import view.login;
 import view.nuevoUsuario;
 
 public class logNuevoUsuario {
@@ -28,23 +30,21 @@ public class logNuevoUsuario {
 
 	
 	public static void introducirNuevoUsuario(usuario oUsuario) {
-		System.out.println(oUsuario);
-		if(!oUsuario.getsNombre().equals("")) {
+		if(bBooleanUsuario(oUsuario)) {
 			try {
-				
-				String sTring = "http://15.237.93.98/set_new_user.php?nombre="+oUsuario.getsNombre()+"&apellido="+oUsuario.getsApellido()+"&numeroTelefono="+oUsuario.getiN_Telefono()+"&email="+oUsuario.getsEmail()+"&fecha="+oUsuario.getdFechaNC()+"&contrasena="+oUsuario.getsContrasena();
-				System.out.println(sTring);
-				if(ControllerPHP.peticionHttp(sTring).equals("Yes")) {
-					JOptionPane.showMessageDialog(new nuevoUsuario(),"Introduccion de usuario correcta");
+				String sTring = "http://15.237.93.98/set_new_user.php?nombre="+oUsuario.getsNombre()+"&apellido="+oUsuario.getsApellido()+"&numeroTelefono="+oUsuario.getiN_Telefono()+"&email="+oUsuario.getsEmail()+"&fecha="+new SimpleDateFormat("yyyy-MM-dd").format(oUsuario.getdFechaNC())+"&contrasena="+oUsuario.getsContrasena();
+				String sBoolean = ControllerPHP.peticionHttp(sTring);
+				if(sBoolean.equals("Yes") && sText.length() > 0) {
+					JOptionPane.showMessageDialog(login.nUFrame,"Introduccion de usuario correcta");
+					logNuevoUsuario.upload();
+					login.nUFrame.dispose();
 				}else {
-					JOptionPane.showMessageDialog(new nuevoUsuario(),"Error en la introduccion del usuario");
+					JOptionPane.showMessageDialog(login.nUFrame,"Error en la introduccion del usuario, recuerde añadir una foto");
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}		
 		}
-
-		return;
 	}
 	
 
@@ -60,10 +60,7 @@ public class logNuevoUsuario {
 			
 			Image image = ImageIO.read(archivo);
 			nuevoUsuario.lblImagen.setIcon(new ImageIcon(image));
-			
-			//Start.Principal.txtField.setText();
-			
-			
+
 		}catch(Exception e){
 			System.out.println(e.getMessage());
 		}
@@ -71,10 +68,7 @@ public class logNuevoUsuario {
 	}
 	
 	public static void upload() {
-		if (sText.length() == 0) {
-			JOptionPane.showMessageDialog(null, "seleccionar una imagen", "FALLO", JOptionPane.ERROR_MESSAGE);
-			return;
-		}
+
 		try {
 			String filePath = archivo.getAbsolutePath();
 			String fileName = nuevoUsuario.tfEmail.getText().toString();
@@ -109,7 +103,7 @@ public class logNuevoUsuario {
 			http.connect();
 			http.getOutputStream().write(out);
 			
-			JOptionPane.showMessageDialog(null, "La imagen ha sido subida correctamente", "UPLOAD", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(login.nUFrame, "La imagen ha sido subida correctamente", "UPLOAD", JOptionPane.INFORMATION_MESSAGE);
 			
 			
 		
@@ -136,5 +130,31 @@ public class logNuevoUsuario {
 		return base64Image;
 	}
 
-	
+	public static boolean bBooleanUsuario(usuario oUsuario) {
+		boolean bRespuesta=false;
+		
+		if((!oUsuario.getsNombre().equals("") && (oUsuario.getsNombre().length() < 45 && oUsuario.getsNombre().length() > 4))){
+			if((!oUsuario.getsApellido().equals("") && (oUsuario.getsApellido().length() < 45 && oUsuario.getsApellido().length() > 4))) {
+				if((oUsuario.getiN_Telefono() > 10000000 && oUsuario.getiN_Telefono() < 999999999)) {
+					if((!oUsuario.getsEmail().isBlank() && oUsuario.getsEmail().contains("@gmail.com") && oUsuario.getsEmail().length() > 11 && oUsuario.getsEmail().length() < 50)) {
+						if((!oUsuario.getsContrasena().isBlank() && oUsuario.getsContrasena().length() > 6 && oUsuario.getsContrasena().length() < 45)) {
+							bRespuesta=true;
+						}else {
+							JOptionPane.showMessageDialog(login.nUFrame,"Introduccion de la contraseña incorrecta, ha de ser (>6 y 45<)","Error al introducir el usuario",JOptionPane.ERROR_MESSAGE);
+						}
+					}else {
+						JOptionPane.showMessageDialog(login.nUFrame,"Introduccion del correo incorrecto, ha de ser un @gmail y (>11 y 54<)","Error al introducir el usuario",JOptionPane.ERROR_MESSAGE);
+					}
+				}else {
+					JOptionPane.showMessageDialog(login.nUFrame,"Introduccion del numero de telefono incorrecto, (>100000000 y 999999999<)","Error al introducir el usuario",JOptionPane.ERROR_MESSAGE);
+				}
+			}else {
+				JOptionPane.showMessageDialog(login.nUFrame,"Introduccion del apellido incorrecto, (>4 y 45<)","Error al introducir el usuario",JOptionPane.ERROR_MESSAGE);
+			}
+		}else {
+			JOptionPane.showMessageDialog(login.nUFrame,"Introduccion del nombre incorrecto, (>4 y 45<)","Error al introducir el usuario",JOptionPane.ERROR_MESSAGE);
+		}
+		
+		return bRespuesta;
+	}
 }
