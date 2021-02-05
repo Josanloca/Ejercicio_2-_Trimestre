@@ -7,12 +7,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 
+import Controller.CtrlNuevoUsuario;
+import Model.usuario;
 import logic.logNuevoUsuario;
 
 import javax.swing.JLabel;
+
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JTextField;
@@ -20,31 +22,32 @@ import javax.swing.SwingConstants;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 import java.awt.Panel;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class nuevoUsuario extends JDialog {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	private final JPanel contentPanel = new JPanel();
+	public static JPanel contentPanel = new JPanel();
+	//public static nuevoUsuario bFrame = new nuevoUsuario();
 	private JTextField tfNombre;
 	private JTextField tfApellido;
-	private JTextField tfNTelefono;
+	public static JTextField tfNTelefono;
 	public static JTextField tfEmail;
 	public static JLabel lblImagen;
 	private JButton okButton;
 	private JButton cancelButton;
 	private JTextField tfContrasena;
+	public static JDateChooser dateChooser;
 
 
 	public nuevoUsuario() {
-		setModal(true);
 		setTitle("Cine en casas - Nuevo usuario");
-		
+		setModal(true);	
 		setAlwaysOnTop(true);
 		setResizable(false);
 		
@@ -131,8 +134,15 @@ public class nuevoUsuario extends JDialog {
 		lblImagen.setBounds(228, 8, 76, 76);
 		contentPanel.add(lblImagen);
 		
-		JDateChooser dateChooser = new JDateChooser("yyyy/MM/dd", "####/##/##", '_');
+		dateChooser = new JDateChooser("yyyy-MM-dd", "#### - ## - ##", '_');
 		dateChooser.setBounds(133, 253, 171, 20);
+		Date date = null;
+		try {
+			date = new SimpleDateFormat("yyyy-MM-dd").parse("2000-01-01");
+		} catch (ParseException e1) {
+			e1.printStackTrace();
+		}
+		dateChooser.setDate(date);
 		contentPanel.add(dateChooser);
 
 		
@@ -153,12 +163,9 @@ public class nuevoUsuario extends JDialog {
 				okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						String pattern = "yyyy-MM-dd";
-						SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-						String sFecha = simpleDateFormat.format(dateChooser.getDate());
-						
-						logNuevoUsuario.introducirNuevoUsuario(tfNombre,tfApellido,tfNTelefono,sFecha,tfEmail,tfContrasena);
-						logNuevoUsuario.upload();
+						Model.usuario oUsua = new usuario(tfNombre.getText().toString(),tfApellido.getText().toString(),15,tfEmail.getText().toString(),dateChooser.getDate(),tfContrasena.getText().toString());
+
+						CtrlNuevoUsuario.onclick_OK(oUsua);
 					}
 				});
 				okButton.setActionCommand("OK");
@@ -166,21 +173,35 @@ public class nuevoUsuario extends JDialog {
 			}
 			{
 				cancelButton = new JButton("Cancel");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 			}
 			GroupLayout gl_buttonPane = new GroupLayout(buttonPane);
 			gl_buttonPane.setHorizontalGroup(
 				gl_buttonPane.createParallelGroup(Alignment.LEADING)
 					.addGroup(gl_buttonPane.createSequentialGroup()
-						.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
-						.addComponent(okButton, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE)
-						.addComponent(cancelButton, GroupLayout.PREFERRED_SIZE, 111, GroupLayout.PREFERRED_SIZE))
+						.addGap(6)
+						.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
+						.addGap(28)
+						.addComponent(okButton, GroupLayout.PREFERRED_SIZE, 83, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addComponent(cancelButton)
+						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 			);
 			gl_buttonPane.setVerticalGroup(
 				gl_buttonPane.createParallelGroup(Alignment.LEADING)
-					.addComponent(btnNewButton)
-					.addComponent(okButton)
-					.addComponent(cancelButton)
+					.addGroup(gl_buttonPane.createSequentialGroup()
+						.addContainerGap()
+						.addGroup(gl_buttonPane.createParallelGroup(Alignment.LEADING)
+							.addGroup(gl_buttonPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(cancelButton)
+								.addComponent(okButton))
+							.addComponent(btnNewButton))
+						.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 			);
 			buttonPane.setLayout(gl_buttonPane);
 		}

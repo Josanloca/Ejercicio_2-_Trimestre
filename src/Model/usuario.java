@@ -16,6 +16,15 @@ public class usuario {
 		
 	}
 	
+	public usuario(String sNombre, String sApellido, int iN_Telefono, String sEmail, Date dFechaNC,String sContrasena) {
+		this.sNombre = sNombre;
+		this.sApellido = sApellido;
+		this.iN_Telefono = iN_Telefono;
+		this.sEmail = sEmail;
+		this.dFechaNC = dFechaNC;
+		this.sContrasena = sContrasena;
+	}
+	
 	public usuario(int iId_usuario, String sNombre, String sApellido, int iN_Telefono, String sEmail, Date dFechaNC,String sContrasena) {
 		this.iId_usuario = iId_usuario;
 		this.sNombre = sNombre;

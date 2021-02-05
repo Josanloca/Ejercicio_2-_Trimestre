@@ -17,9 +17,6 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-
 import Controller.ControllerPHP;
 import Model.usuario;
 import view.nuevoUsuario;
@@ -30,16 +27,23 @@ public class logNuevoUsuario {
 	private static String sText="";
 
 	
-	public static void introducirNuevoUsuario(JTextField tfNombre, JTextField tfApellido, JTextField tfNTelefono, String sFecha, JTextField tfEmail, JTextField tfContrasena) {
+	public static void introducirNuevoUsuario(usuario oUsuario) {
+		System.out.println(oUsuario);
+		if(!oUsuario.getsNombre().equals("")) {
+			try {
+				
+				String sTring = "http://15.237.93.98/set_new_user.php?nombre="+oUsuario.getsNombre()+"&apellido="+oUsuario.getsApellido()+"&numeroTelefono="+oUsuario.getiN_Telefono()+"&email="+oUsuario.getsEmail()+"&fecha="+oUsuario.getdFechaNC()+"&contrasena="+oUsuario.getsContrasena();
+				System.out.println(sTring);
+				if(ControllerPHP.peticionHttp(sTring).equals("Yes")) {
+					JOptionPane.showMessageDialog(new nuevoUsuario(),"Introduccion de usuario correcta");
+				}else {
+					JOptionPane.showMessageDialog(new nuevoUsuario(),"Error en la introduccion del usuario");
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}		
+		}
 
-		try {
-			String sTring = "http://15.237.93.98/set_new_user.php?nombre="+tfNombre.getText().toString()+"&apellido="+tfApellido.getText().toString()+"&numeroTelefono="+tfNTelefono.getText().toString()+"&email="+tfEmail.getText().toString()+"&fecha="+sFecha+"&contrasena="+tfContrasena.getText().toString();
-			
-			ControllerPHP.peticionHttp(sTring);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}		
 		return;
 	}
 	
