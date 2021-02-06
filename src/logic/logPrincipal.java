@@ -45,9 +45,9 @@ public class logPrincipal {
 		Integer numeroTelefono = jsonObject.getInt("numeroTelefono");
 		String email = jsonObject.getString("email");
 		String fecha = jsonObject.getString("fecha");
-		String contrasena = jsonObject.getString("contraseña");
+		String contrasena = jsonObject.getString("contrasena");
 		
-		//System.out.println(""+id_usuario+" "+nombre+" "+apellido+" "+numeroTelefono+" "+email+" "+fecha+" "+contrasena);
+		System.out.println(""+id_usuario+" "+nombre+" "+apellido+" "+numeroTelefono+" "+email+" "+fecha+" "+contrasena);
 		return new usuario(id_usuario,nombre,apellido,numeroTelefono,email,transformadorStringDate(fecha),contrasena);
 	}
 	

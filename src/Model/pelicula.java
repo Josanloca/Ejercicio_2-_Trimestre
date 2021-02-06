@@ -8,7 +8,16 @@ public class pelicula {
 	private genero gGenero;
 	
 	
+	public pelicula() {
+
+	}
 	
+	public pelicula(int iIdPelicula, String sNombrePelicula, byte bICCA, genero gGenero) {
+		this.iIdPelicula = iIdPelicula;
+		this.sNombrePelicula = sNombrePelicula;
+		this.bICCA = bICCA;
+		this.gGenero = gGenero;
+	}
 	
 	public int getiIdPelicula() {
 		return iIdPelicula;
@@ -35,7 +44,9 @@ public class pelicula {
 		this.gGenero = gGenero;
 	}
 
-	
-	
-	
+	@Override
+	public String toString() {
+		return "pelicula [iIdPelicula=" + iIdPelicula + ", sNombrePelicula=" + sNombrePelicula + ", bICCA=" + bICCA
+				+ ", gGenero=" + gGenero + "]";
+	}
 }

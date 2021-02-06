@@ -17,7 +17,7 @@ while ($row = mysqli_fetch_assoc($result)){
     ,'numeroTelefono'=> $row["numeroTelefono"]
     ,'email'=> $row["email"]
     ,'fecha'=> $row["fecha"]
-    ,'contraseña'=> $row["contraseña"]
+    ,'contrasena'=> $row["contrasena"]
     );    
 };
 

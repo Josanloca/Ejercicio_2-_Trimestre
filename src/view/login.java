@@ -5,12 +5,15 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+import Controller.CtrlGeneral;
 import Start.principal;
 import logic.logPrincipal;
 
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.Dimension;
+
 import javax.swing.JTextField;
 import java.awt.Toolkit;
 import javax.swing.JButton;
@@ -30,6 +33,8 @@ public class login extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	public static nuevoUsuario nUFrame = new nuevoUsuario();
+	public static ViewGeneral vgFrame = new ViewGeneral();
+
 	public static JPanel contentPane;
 	private JTextField tfCorreo;
 	private JPasswordField passwordField;
@@ -46,12 +51,16 @@ public class login extends JFrame {
 				}
 			}
 		});
+
 		
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Medac\\git\\Ejercicio_2-_Trimestre\\img\\icono.png"));
+		
+		setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icono.png")));
 		
 		setTitle("Cine en casa - Login");
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 300, 300);
+		
+		setLocationRelativeTo(null);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -123,6 +132,10 @@ public class login extends JFrame {
 					}else {
 						if(logPrincipal.LoginUsuario(tfCorreo,passwordField).equals("ok")) {
 							sX = "Conexion Correcta";
+							vgFrame.setVisible(true);
+							principal.frame.setVisible(false);
+							CtrlGeneral.NombreUsuario();
+
 						}else {
 							sX = "Conexion Erronea";
 						}
