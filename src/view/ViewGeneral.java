@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Controller.CtrlGeneral;
+import Controller.CtrlPeliculas;
 
 import javax.swing.JScrollPane;
 import java.awt.FlowLayout;
@@ -33,6 +34,7 @@ public class ViewGeneral extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	private JPanel contentPane;
+	public static viewPeliculas vpFrame = new viewPeliculas();
 	public static JLabel lblNewLabel ;
 	@SuppressWarnings("rawtypes")
 	public static JList lPelicula;
@@ -87,7 +89,8 @@ public class ViewGeneral extends JFrame {
 		lPelicula.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				CtrlGeneral.DisplayPelicula();
+				vpFrame.setVisible(true);
+				CtrlPeliculas.iniciacionPeli();
 			}
 		});
 

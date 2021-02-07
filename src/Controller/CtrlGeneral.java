@@ -23,8 +23,8 @@ public class CtrlGeneral {
 		return logGeneral.createImageMap(list);
 	}
 
-	public static void DisplayPelicula() {
-		ViewGeneral.lPelicula.getSelectedValue();
+	public static String DisplayPelicula() {
+		return ViewGeneral.lPelicula.getSelectedValue().toString();
 	}
 	
 
