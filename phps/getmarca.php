@@ -13,9 +13,7 @@ while ($row = mysqli_fetch_assoc($result)){
     $miArray[]= array
     (
     'marca'=>$row["MARCA"]
-
     );
-    
 };
 
 $salidaJSON = json_encode($miArray);
