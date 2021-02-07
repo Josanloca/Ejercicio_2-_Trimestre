@@ -1,6 +1,5 @@
 package Start;
 
-import logic.logGeneral;
 import view.login;
 
 public class principal {

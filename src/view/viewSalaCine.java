@@ -22,22 +22,12 @@ public class viewSalaCine extends JDialog {
 	public static DefaultPieDataset dataset = new DefaultPieDataset();
 	public static JFreeChart chart;
 	
-	public static void main(String[] args) {
-		try {
-			viewSalaCine dialog = new viewSalaCine();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 	
 
 	public viewSalaCine() {
 		CtrlEntradas.iniciador();
 		contentPanel.add(new ChartPanel(chart));
-		setUndecorated(true);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 804, 602);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setLayout(new FlowLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));

@@ -7,6 +7,9 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Controller.CtrlEntradas;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
@@ -22,17 +25,20 @@ import java.awt.event.ActionEvent;
 
 public class viewPeliculas extends JDialog {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	public static JLabel lblPelicula;
 	public static JLabel lbNombrePelicula ;
 	public static JLabel lbICCANOMBRE;
 	public static JLabel lbGENERONombre;
-	
 
 	public viewPeliculas() {
+		
 		setUndecorated(true);
-		setModal(true);	
-		setAlwaysOnTop(true);
+		setModal(false);	
 		setResizable(false);
 		setTitle("Cine en casa - Peliculas");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icono.png")));
@@ -108,13 +114,19 @@ public class viewPeliculas extends JDialog {
 				JButton btnNewButton = new JButton("Reservar entrada");
 				btnNewButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						
+						viewSalaCine vsFrama = new viewSalaCine();
+						vsFrama.setVisible(true);
 					}
 				});
 				buttonPane.add(btnNewButton);
 			}
 			{
 				JButton cancelButton = new JButton("Salir");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}

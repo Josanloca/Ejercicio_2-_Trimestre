@@ -91,6 +91,7 @@ public class ViewGeneral extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				vpFrame.setVisible(true);
 				CtrlPeliculas.iniciacionPeli();
+				System.out.println("hola");
 			}
 		});
 
