@@ -12,7 +12,6 @@ import logic.logPrincipal;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Color;
-import java.awt.Dimension;
 
 import javax.swing.JTextField;
 import java.awt.Toolkit;
@@ -125,6 +124,7 @@ public class login extends JFrame {
 
 			btnLogin.addActionListener(new ActionListener() {
 				
+				@SuppressWarnings("deprecation")
 				public void actionPerformed(ActionEvent e) {
 					String sX="x";
 					if(tfCorreo.getText().toString().equals("") && passwordField.getText().toString().equals("123")) {

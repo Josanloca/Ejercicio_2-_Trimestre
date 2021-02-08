@@ -23,14 +23,10 @@ import java.awt.Toolkit;
 import java.util.Map;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.JSeparator;
 
 
 public class ViewGeneral extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	private JPanel contentPane;
@@ -40,12 +36,11 @@ public class ViewGeneral extends JFrame {
 	public static JList lPelicula;
 	private final Map<String, ImageIcon> imageMap;
 	
-
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public ViewGeneral() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icono.png")));
 
-		setTitle("Cine en casa");
+		setTitle("Cine en casa - General");
 		
 		setLocationRelativeTo(null);		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -113,15 +108,12 @@ public class ViewGeneral extends JFrame {
 	//en honor al que se lo he robado le dejare su nombre
     public class MarioListRenderer extends DefaultListCellRenderer {
 
-        /**
-		 * 
-		 */
 		private static final long serialVersionUID = 1L;
 		Font font = new Font("helvitica", Font.BOLD, 24);
 
         @Override
         public Component getListCellRendererComponent(
-                JList list, Object value, int index,
+                @SuppressWarnings("rawtypes") JList list, Object value, int index,
                 boolean isSelected, boolean cellHasFocus) {
 
             JLabel label = (JLabel) super.getListCellRendererComponent(

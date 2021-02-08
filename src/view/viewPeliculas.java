@@ -8,26 +8,17 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Controller.CtrlEntradas;
-
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Toolkit;
 
 import javax.swing.SwingConstants;
-import java.awt.Dialog.ModalityType;
-import java.awt.Dialog.ModalExclusionType;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class viewPeliculas extends JDialog {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	public static JLabel lblPelicula;
@@ -36,14 +27,12 @@ public class viewPeliculas extends JDialog {
 	public static JLabel lbGENERONombre;
 
 	public viewPeliculas() {
-		
-		setUndecorated(true);
 		setModal(false);	
 		setResizable(false);
 		setTitle("Cine en casa - Peliculas");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icono.png")));
 
-		setBounds(100, 100, 450, 176);
+		setBounds(100, 100, 450, 219);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(Color.BLACK);
 		contentPanel.setForeground(Color.WHITE);

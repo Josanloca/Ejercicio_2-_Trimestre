@@ -2,6 +2,7 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.Toolkit;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -13,6 +14,7 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.DefaultPieDataset;
 
 import Controller.CtrlEntradas;
+import java.awt.Color;
 
 public class viewSalaCine extends JDialog {
 
@@ -25,7 +27,11 @@ public class viewSalaCine extends JDialog {
 	
 
 	public viewSalaCine() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icono.png")));
+
+		setTitle("Cine en casa - Entradas");
 		CtrlEntradas.iniciador();
+		contentPanel.setBackground(Color.BLACK);
 		contentPanel.add(new ChartPanel(chart));
 		setBounds(100, 100, 804, 602);
 		getContentPane().setLayout(new BorderLayout());

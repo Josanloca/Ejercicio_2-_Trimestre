@@ -1,19 +1,23 @@
 package logic;
 
+import java.awt.Color;
+
 import org.jfree.chart.ChartFactory;
+import org.jfree.chart.labels.PieSectionLabelGenerator;
+import org.jfree.chart.labels.StandardPieSectionLabelGenerator;
 import org.jfree.chart.plot.PiePlot3D;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import Controller.ControllerPHP;
 import Model.usuario;
-import view.ViewGeneral;
 import view.viewPeliculas;
 import view.viewSalaCine;
 
 public class logSalaCine {
 	public static byte bNumeroEntradas;
 	public static byte bCapacidadMax;
+	private static String sNombrePeli;
 
 	
 	private static byte numeroEntradasActuales() {
@@ -23,6 +27,7 @@ public class logSalaCine {
 		for(int x=0; x<logGeneral.oLPelicula.size() ; x++) {
 			if(logGeneral.oLPelicula.get(x).getsNombrePelicula().equals(viewPeliculas.lbNombrePelicula.getText())) {
 				bIdPelicula = (byte) logGeneral.oLPelicula.get(x).getiIdPelicula();
+				sNombrePeli = logGeneral.oLPelicula.get(x).getsNombrePelicula();
 				break;
 			}
 		}
@@ -47,15 +52,18 @@ public class logSalaCine {
 		System.out.println(bNumeroEntradas);
 		viewSalaCine.dataset.setValue("Entradas sin reservar", numeroEntradasActuales());
 		viewSalaCine.dataset.setValue("Entradas reservadas", bNumeroEntradas);
-		viewSalaCine.chart = ChartFactory.createPieChart3D("Chart 3", viewSalaCine.dataset, false, false, false);
-		
+		viewSalaCine.chart = ChartFactory.createPieChart3D("Entradas para "+sNombrePeli, viewSalaCine.dataset, true, true, false);
+		viewSalaCine.chart.getPlot().setBackgroundPaint( Color.BLACK );
 		PiePlot3D plot = (PiePlot3D) viewSalaCine.chart.getPlot();
+		PieSectionLabelGenerator labelGenerator = new StandardPieSectionLabelGenerator("{0} = {1}");
+		plot.setLabelGenerator(labelGenerator);
 		plot.setForegroundAlpha(0.6f);
 		plot.setCircular(true);		
 	}
 
 	
 	
+	@SuppressWarnings("unused")
 	private static usuario jsonToUsuario(String respuesta) {
 		
 		JSONArray jsonArray = new JSONArray(respuesta);
