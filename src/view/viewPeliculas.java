@@ -8,6 +8,9 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Controller.CtrlSalaCine;
+import logic.logSalaCine;
+
 import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Font;

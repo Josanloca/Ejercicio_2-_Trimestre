@@ -13,11 +13,13 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.DefaultPieDataset;
 
-import Controller.CtrlEntradas;
+import Controller.CtrlSalaCine;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class viewSalaCine extends JDialog {
 
@@ -26,7 +28,7 @@ public class viewSalaCine extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	public static DefaultPieDataset dataset = new DefaultPieDataset();
 	public static JFreeChart chart;
-	public static JLabel lblNumeroActual;
+	public static JLabel lblNumeroActual= new JLabel("0");
 	
 	
 	
@@ -35,7 +37,8 @@ public class viewSalaCine extends JDialog {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icono.png")));
 
 		setTitle("Cine en casa - Entradas");
-		CtrlEntradas.iniciador();
+		CtrlSalaCine.iniciador();
+
 		contentPanel.setBackground(Color.BLACK);
 		contentPanel.setLayout(null);
 		ChartPanel chartPanel = new ChartPanel(chart);
@@ -52,6 +55,11 @@ public class viewSalaCine extends JDialog {
 		contentPanel.add(lblNewLabel);
 		
 		JButton btnNewButton_1 = new JButton(">");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CtrlSalaCine.sumaEntrada();
+			}
+		});
 		btnNewButton_1.setFont(new Font("Bebas Neue", Font.PLAIN, 25));
 		btnNewButton_1.setBounds(301, 473, 53, 23);
 		contentPanel.add(btnNewButton_1);
@@ -61,12 +69,16 @@ public class viewSalaCine extends JDialog {
 		btnNewButton.setBounds(134, 473, 50, 23);
 		contentPanel.add(btnNewButton);
 		
-		lblNumeroActual = new JLabel("0");
+		lblNumeroActual = new JLabel("");
 		lblNumeroActual.setFont(new Font("Bebas Neue", Font.BOLD, 20));
 		lblNumeroActual.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNumeroActual.setForeground(Color.WHITE);
 		lblNumeroActual.setBounds(194, 475, 89, 21);
 		contentPanel.add(lblNumeroActual);
+		
+		CtrlSalaCine.iniciador();
+
+
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -74,6 +86,11 @@ public class viewSalaCine extends JDialog {
 
 			{
 				JButton cancelButton = new JButton("Cancel");
+				cancelButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}

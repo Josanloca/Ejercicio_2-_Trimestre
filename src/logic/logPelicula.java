@@ -16,7 +16,6 @@ public class logPelicula {
 		
 		for(byte x = 0 ; x < logGeneral.oLPelicula.size(); x++ ) {
 			if(logGeneral.oLPelicula.get(x).getsNombrePelicula().equals(sNombreSelect)) {
-				System.out.println(logGeneral.oLPelicula.get(x));
 				viewPeliculas.lbNombrePelicula.setText(logGeneral.oLPelicula.get(x).getsNombrePelicula());
 				viewPeliculas.lbICCANOMBRE.setText(String.valueOf(logGeneral.oLPelicula.get(x).getbICCA()));
 				viewPeliculas.lbGENERONombre.setText(String.valueOf(logGeneral.oLPelicula.get(x).getgGenero().getNombreGenero()));
