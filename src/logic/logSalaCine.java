@@ -31,7 +31,6 @@ public class logSalaCine {
 				break;
 			}
 		}
-
 				try {
 					
 					bCapacidadMax=Byte.valueOf(ControllerPHP.peticionHttp("http://15.237.93.98/get-capacidad-max.php?idPelicula="+bIdPelicula));
@@ -54,6 +53,7 @@ public class logSalaCine {
 		viewSalaCine.dataset.setValue("Entradas reservadas", bNumeroEntradas);
 		viewSalaCine.chart = ChartFactory.createPieChart3D("Entradas para "+sNombrePeli, viewSalaCine.dataset, true, true, false);
 		viewSalaCine.chart.getPlot().setBackgroundPaint( Color.BLACK );
+		viewSalaCine.
 		PiePlot3D plot = (PiePlot3D) viewSalaCine.chart.getPlot();
 		PieSectionLabelGenerator labelGenerator = new StandardPieSectionLabelGenerator("{0} = {1}");
 		plot.setLabelGenerator(labelGenerator);
