@@ -2,7 +2,7 @@
 
 require_once("conexion.php");
 
-$sql = "SELECT capacidad_act FROM sala_cine WHERE id_pelicula = ".$_GET["idPelicula"];
+$sql = "SELECT capacidad_act FROM sala_cine WHERE id_sala_cine = ".$_GET["idPelicula"];
 
 $result = $conn->query($sql);
 
