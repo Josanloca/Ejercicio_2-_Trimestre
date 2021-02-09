@@ -8,9 +8,6 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Controller.CtrlSalaCine;
-import logic.logSalaCine;
-
 import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Font;
@@ -30,7 +27,6 @@ public class viewPeliculas extends JDialog {
 	public static JLabel lbGENERONombre;
 
 	public viewPeliculas() {
-		setModal(false);	
 		setResizable(false);
 		setTitle("Cine en casa - Peliculas");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icono.png")));
@@ -70,6 +66,9 @@ public class viewPeliculas extends JDialog {
 		lblGenero.setFont(new Font("Bebas Neue", Font.PLAIN, 20));
 		lblGenero.setBounds(193, 96, 58, 14);
 		contentPanel.add(lblGenero);
+		
+		setLocationRelativeTo(null);		
+
 		{
 			lbNombrePelicula = new JLabel("");
 			lbNombrePelicula.setBackground(Color.WHITE);

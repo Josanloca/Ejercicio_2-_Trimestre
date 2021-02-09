@@ -7,10 +7,10 @@ import javax.swing.border.EmptyBorder;
 
 import Controller.CtrlGeneral;
 import Controller.CtrlPeliculas;
-
 import javax.swing.JScrollPane;
 import java.awt.FlowLayout;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
@@ -23,6 +23,8 @@ import java.awt.Toolkit;
 import java.util.Map;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 
 public class ViewGeneral extends JFrame {
@@ -38,13 +40,21 @@ public class ViewGeneral extends JFrame {
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public ViewGeneral() {
+		
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				int reply = JOptionPane.showConfirmDialog(login.vgFrame, "Seguro que quieres salir?", "Advertencia", JOptionPane.YES_NO_OPTION);
+				if (reply == 0) {
+					System.exit(0);
+				}
+			}
+		});		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icono.png")));
 
 		setTitle("Cine en casa - General");
-		
-		setLocationRelativeTo(null);		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 500);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -86,7 +96,6 @@ public class ViewGeneral extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				vpFrame.setVisible(true);
 				CtrlPeliculas.iniciacionPeli();
-				System.out.println("hola");
 			}
 		});
 
@@ -103,6 +112,9 @@ public class ViewGeneral extends JFrame {
 		FlowLayout flowLayout_1 = (FlowLayout) panel_1.getLayout();
 		flowLayout_1.setHgap(40);
 		contentPane.add(panel_1, BorderLayout.WEST);
+		
+		setLocationRelativeTo(null);		
+
 	}
 	
 	//en honor al que se lo he robado le dejare su nombre

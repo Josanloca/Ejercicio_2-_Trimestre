@@ -46,7 +46,7 @@ public class nuevoUsuario extends JDialog {
 
 	public nuevoUsuario() {
 		setTitle("Cine en casas - Nuevo usuario");
-		setModal(true);	
+		setLocationRelativeTo(null);
 		setAlwaysOnTop(true);
 		setResizable(false);
 		

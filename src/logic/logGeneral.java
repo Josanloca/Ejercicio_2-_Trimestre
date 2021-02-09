@@ -13,6 +13,7 @@ import org.json.JSONObject;
 import Controller.ControllerPHP;
 import Model.genero;
 import Model.pelicula;
+import variables.VariablesGenerales;
 
 public class logGeneral {
 	
@@ -20,7 +21,7 @@ public class logGeneral {
 
 	public static void GetPeliculasList() {
 		try {
-			jsonToPeliculasList(ControllerPHP.peticionHttp("http://15.237.93.98/get-peliculas.php"));
+			jsonToPeliculasList(ControllerPHP.peticionHttp(VariablesGenerales.URL+"/get-peliculas.php"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		
@@ -60,7 +61,7 @@ public class logGeneral {
     		for(int x=0; x<oLPelicula.size() ; x++) {
     			sImagen = oLPelicula.get(x).getsNombrePelicula();
     			
-    			map.put(sImagen, new ImageIcon(new URL("http://15.237.93.98/img/peliculas/"+sImagen+".png")));
+    			map.put(sImagen, new ImageIcon(new URL(VariablesGenerales.URL+"/img/peliculas/"+sImagen+".png")));
     		}
 
         } catch (Exception ex) {

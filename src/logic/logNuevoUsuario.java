@@ -20,6 +20,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import Controller.ControllerPHP;
 import Model.usuario;
+import variables.VariablesGenerales;
 import view.login;
 import view.nuevoUsuario;
 
@@ -32,14 +33,14 @@ public class logNuevoUsuario {
 	public static void introducirNuevoUsuario(usuario oUsuario) {
 		if(bBooleanUsuario(oUsuario)) {
 			try {
-				String sTring = "http://15.237.93.98/set_new_user.php?nombre="+oUsuario.getsNombre()+"&apellido="+oUsuario.getsApellido()+"&numeroTelefono="+oUsuario.getiN_Telefono()+"&email="+oUsuario.getsEmail()+"&fecha="+new SimpleDateFormat("yyyy-MM-dd").format(oUsuario.getdFechaNC())+"&contrasena="+oUsuario.getsContrasena();
+				String sTring = VariablesGenerales.URL+"/set_new_user.php?nombre="+oUsuario.getsNombre()+"&apellido="+oUsuario.getsApellido()+"&numeroTelefono="+oUsuario.getiN_Telefono()+"&email="+oUsuario.getsEmail()+"&fecha="+new SimpleDateFormat("yyyy-MM-dd").format(oUsuario.getdFechaNC())+"&contrasena="+oUsuario.getsContrasena();
 				String sBoolean = ControllerPHP.peticionHttp(sTring);
 				if(sBoolean.equals("Yes") && sText.length() > 0) {
 					JOptionPane.showMessageDialog(login.nUFrame,"Introduccion de usuario correcta");
 					logNuevoUsuario.upload();
 					login.nUFrame.dispose();
 				}else {
-					JOptionPane.showMessageDialog(login.nUFrame,"Error en la introduccion del usuario, recuerde añadir una foto");
+					JOptionPane.showMessageDialog(login.nUFrame,"Error en la introduccion del usuario, recuerde aï¿½adir una foto");
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -74,7 +75,7 @@ public class logNuevoUsuario {
 			String fileName = nuevoUsuario.tfEmail.getText().toString();
 			String fileNameWOExtension = fileName.replace("[.][^.]+$", "");
 			
-			String path = "http://15.237.93.98/upload-Imagen.php";
+			String path = VariablesGenerales.URL+"/upload-Imagen.php";
 			
 			// Establecer la conexion... 
 			URL url = new URL(path);
@@ -126,7 +127,6 @@ public class logNuevoUsuario {
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), "UPLOAD", JOptionPane.ERROR_MESSAGE);
 		}
-		System.out.println(base64Image);
 		return base64Image;
 	}
 
@@ -140,7 +140,7 @@ public class logNuevoUsuario {
 						if((!oUsuario.getsContrasena().isBlank() && oUsuario.getsContrasena().length() > 6 && oUsuario.getsContrasena().length() < 45)) {
 							bRespuesta=true;
 						}else {
-							JOptionPane.showMessageDialog(login.nUFrame,"Introduccion de la contraseña incorrecta, ha de ser (>6 y 45<)","Error al introducir el usuario",JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(login.nUFrame,"Introduccion de la contraseï¿½a incorrecta, ha de ser (>6 y 45<)","Error al introducir el usuario",JOptionPane.ERROR_MESSAGE);
 						}
 					}else {
 						JOptionPane.showMessageDialog(login.nUFrame,"Introduccion del correo incorrecto, ha de ser un @gmail y (>11 y 54<)","Error al introducir el usuario",JOptionPane.ERROR_MESSAGE);

@@ -6,8 +6,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import Controller.CtrlGeneral;
+import Controller.CtrlLogin;
 import Start.principal;
-import logic.logPrincipal;
+import logic.logLogin;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -26,6 +27,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JCheckBox;
 
 public class login extends JFrame {
 
@@ -35,8 +37,9 @@ public class login extends JFrame {
 	public static ViewGeneral vgFrame = new ViewGeneral();
 
 	public static JPanel contentPane;
-	private JTextField tfCorreo;
-	private JPasswordField passwordField;
+	public static JTextField tfCorreo;
+	public static JPasswordField passwordField;
+	public static JCheckBox cbRecordatorio;
 
 
 	public login() {
@@ -52,12 +55,11 @@ public class login extends JFrame {
 		});
 
 		
-		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icono.png")));
 		
 		setTitle("Cine en casa - Login");
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		setBounds(100, 100, 300, 300);
+		setBounds(100, 100, 300, 340);
 		
 		setLocationRelativeTo(null);
 		
@@ -121,6 +123,20 @@ public class login extends JFrame {
 		passwordField.setBounds(95, 150, 180, 25);
 		contentPane.add(passwordField);
 		
+		boolean b = CtrlLogin.isExiste();
+
+		
+		cbRecordatorio = new JCheckBox("");
+		cbRecordatorio.setBounds(185, 225, 18, 18);
+		cbRecordatorio.setSelected(b);
+		contentPane.add(cbRecordatorio);
+		
+		JLabel lblRecordar = new JLabel("Recordar");
+		lblRecordar.setFont(new Font("Bebas Neue", Font.PLAIN, 20));
+		lblRecordar.setForeground(Color.ORANGE);
+		lblRecordar.setBounds(80, 227, 65, 16);
+		contentPane.add(lblRecordar);
+		
 
 			btnLogin.addActionListener(new ActionListener() {
 				
@@ -130,16 +146,20 @@ public class login extends JFrame {
 					if(tfCorreo.getText().toString().equals("") && passwordField.getText().toString().equals("123")) {
 						btnMenAdmin.setEnabled(true);
 					}else {
-						if(logPrincipal.LoginUsuario(tfCorreo,passwordField).equals("ok")) {
-							sX = "Conexion Correcta";
+						if(logLogin.LoginUsuario(tfCorreo,passwordField).equals("ok")) {
 							vgFrame.setVisible(true);
 							principal.frame.setVisible(false);
+							if(cbRecordatorio.isSelected()) {
+								CtrlLogin.cargaUsuario();
+							}else {
+								CtrlLogin.borrado();
+							}
 							CtrlGeneral.NombreUsuario();
-
 						}else {
 							sX = "Conexion Erronea";
+							JOptionPane.showMessageDialog(principal.frame,sX);
 						}
-						JOptionPane.showMessageDialog(principal.frame,sX);
+						
 					}					
 				}
 			});

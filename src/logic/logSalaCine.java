@@ -12,7 +12,7 @@ import org.json.JSONObject;
 import Controller.ControllerPHP;
 import Model.pelicula;
 import Model.sala_cine;
-import Model.usuario;
+import variables.VariablesGenerales;
 import view.viewPeliculas;
 import view.viewSalaCine;
 
@@ -34,10 +34,10 @@ public class logSalaCine {
 		}
 
 				try {
-					oSalaCine = jsonToSalaCine(ControllerPHP.peticionHttp("http://15.237.93.98/get-sala-cine.php?idpeli="+oPelicula.getiIdPelicula()));
-					bCapacidadMax=Byte.valueOf(ControllerPHP.peticionHttp("http://15.237.93.98/get-capacidad-max.php?idPelicula="+oPelicula.getiIdPelicula()));
-					bNumeroEntradas=Byte.valueOf(ControllerPHP.peticionHttp("http://15.237.93.98/get-entradas.php?idPelicula="+oPelicula.getiIdPelicula()));
-					bNEntradasUsuario = Byte.valueOf(ControllerPHP.peticionHttp("http://15.237.93.98/get-Entrada-usuario.php?idUsuario="+logPrincipal.oUsuarioGeneral.getiId_usuario()+"&idSalCine="+oPelicula.getiIdPelicula()));
+					oSalaCine = jsonToSalaCine(ControllerPHP.peticionHttp(VariablesGenerales.URL+"/get-sala-cine.php?idpeli="+oPelicula.getiIdPelicula()));
+					bCapacidadMax=Byte.valueOf(ControllerPHP.peticionHttp(VariablesGenerales.URL+"/get-capacidad-max.php?idPelicula="+oPelicula.getiIdPelicula()));
+					bNumeroEntradas=Byte.valueOf(ControllerPHP.peticionHttp(VariablesGenerales.URL+"/get-entradas.php?idPelicula="+oPelicula.getiIdPelicula()));
+					bNEntradasUsuario = Byte.valueOf(ControllerPHP.peticionHttp(VariablesGenerales.URL+"/get-Entrada-usuario.php?idUsuario="+logLogin.oUsuarioGeneral.getiId_usuario()+"&idSalCine="+oSalaCine.getbId_sala_cine()));
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -59,7 +59,7 @@ public class logSalaCine {
 		plot.setLabelGenerator(labelGenerator);
 		plot.setForegroundAlpha(0.6f);
 		plot.setCircular(true);
-		viewSalaCine.lblNumeroActual.setText(""+bNEntradasUsuario);
+		viewSalaCine.lblNumeroActual.setText(String.valueOf(bNEntradasUsuario));
 	}
 
 
@@ -70,6 +70,7 @@ public class logSalaCine {
 		byte id_sala_cine = (byte) jsonObject.getInt("id_sala_cine");
 		byte capacidad_max = (byte) jsonObject.getInt("capacidad_max");
 		byte capacidad_act = (byte) jsonObject.getInt("capacidad_act");
+		@SuppressWarnings("unused")
 		int id_pelicula = jsonObject.getInt("id_pelicula");
 
 
@@ -79,36 +80,48 @@ public class logSalaCine {
 
 
 
+	@SuppressWarnings("unused")
 	public static void sumaEntrada() {
-		bNumeroEntradas =  (byte) (bNumeroEntradas+1);
-		byte bN = 0;
-		if(bNEntradasUsuario<bCapacidadMax) {
-			
+		
+		byte bN = 0,bEntrada;
+		//System.out.println(bCapacidadMax+" . "+bNumeroEntradas);
+		if(bCapacidadMax >=bNumeroEntradas) {
+			bNumeroEntradas =  (byte) (bNumeroEntradas+1);
 			try {
-				System.out.println(bNEntradasUsuario);
-				ControllerPHP.peticionHttp("http://15.237.93.98/update-nueva-entrada.php?capacidad="+bNumeroEntradas+"&idPeli="+oSalaCine.getbId_sala_cine());
-				bNumeroEntradas=Byte.valueOf(ControllerPHP.peticionHttp("http://15.237.93.98/get-entradas.php?idPelicula="+oSalaCine.getbId_sala_cine()));
-				System.out.println(ControllerPHP.peticionHttp("http://15.237.93.98/max-asiento.php?idUsuario="+logPrincipal.oUsuarioGeneral.getiId_usuario()+"&idSCine="+oSalaCine.getbId_sala_cine()));
-				bN= Byte.valueOf(ControllerPHP.peticionHttp("http://15.237.93.98/max-asiento.php?idUsuario="+logPrincipal.oUsuarioGeneral.getiId_usuario()+"&idSCine="+oSalaCine.getbId_sala_cine()));
-				System.out.println(bN);
-				System.out.println(ControllerPHP.peticionHttp(//ERROR AQUI ABAJO
-						"http://15.237.93.98/nueva-entrada.php?n_sitio="+(bN)
-								+"&idUsuario="+logPrincipal.oUsuarioGeneral.getiId_usuario()
-								+"&idSCine="+oSalaCine.getbId_sala_cine()));
+				ControllerPHP.peticionHttp(VariablesGenerales.URL+"/update-nueva-entrada.php?capacidad="+bNumeroEntradas+"&idPeli="+oSalaCine.getbId_sala_cine());
 				
-				//SELECT MAX(n_sitio) AS mayor FROM entrada WHERE id_usuario_fk =2 AND id_sala_cine_fk=1
+				bN= Byte.valueOf(ControllerPHP.peticionHttp(VariablesGenerales.URL+"/max-asiento.php?idUsuario="+logLogin.oUsuarioGeneral.getiId_usuario()+"&idSCine="+oSalaCine.getbId_sala_cine()));
+				ControllerPHP.peticionHttp(
+						VariablesGenerales.URL+"/nueva-entrada.php?n_sitio="+(bN+1)
+								+"&idUsuario="+logLogin.oUsuarioGeneral.getiId_usuario()
+								+"&idSCine="+oSalaCine.getbId_sala_cine());
+				bEntrada=Byte.valueOf(ControllerPHP.peticionHttp(VariablesGenerales.URL+"/get-Entrada-usuario.php?idUsuario="+logLogin.oUsuarioGeneral.getiId_usuario()+"&idSalCine="+oSalaCine.getbId_sala_cine()));
+				iniciador();				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			
-			
-			
-			
-			
 		}		
 	}
 
-
+	@SuppressWarnings("unused")
+	public static void restaEntrada() {
+		byte bN = 0,bEntrada;
+		//System.out.println(bCapacidadMax+" . "+bNumeroEntradas);
+		
+		if(bNumeroEntradas>0) {
+			bNumeroEntradas =  (byte) (bNumeroEntradas-1);
+			try {
+				ControllerPHP.peticionHttp("/update-nueva-entrada.php?capacidad="+bNumeroEntradas+"&idPeli="+oSalaCine.getbId_sala_cine());
+				bN= Byte.valueOf(ControllerPHP.peticionHttp(VariablesGenerales.URL+"/max-asiento.php?idUsuario="+logLogin.oUsuarioGeneral.getiId_usuario()+"&idSCine="+oSalaCine.getbId_sala_cine()));
+				ControllerPHP.peticionHttp(VariablesGenerales.URL+"/remove-entrada.php?idUsuario="+logLogin.oUsuarioGeneral.getiId_usuario()+"&idCine="+oSalaCine.getbId_sala_cine()+"&nSitio="+bN);
+				iniciador();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}		
+	}
 
 
 

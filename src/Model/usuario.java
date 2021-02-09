@@ -1,9 +1,11 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class usuario {
-	
+public class usuario implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 	private int iId_usuario;
 	private String sNombre;
 	private String sApellido;
@@ -14,6 +16,11 @@ public class usuario {
 	
 	public usuario() {
 		
+	}
+	
+	public usuario(String sEmail,String sContrasena) {
+		this.sEmail = sEmail;
+		this.sContrasena = sContrasena;
 	}
 	
 	public usuario(String sNombre, String sApellido, int iN_Telefono, String sEmail, Date dFechaNC,String sContrasena) {

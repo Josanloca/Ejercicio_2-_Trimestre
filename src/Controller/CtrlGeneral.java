@@ -5,13 +5,13 @@ import java.util.Map;
 import javax.swing.ImageIcon;
 
 import logic.logGeneral;
-import logic.logPrincipal;
+import logic.logLogin;
 import view.ViewGeneral;
 
 public class CtrlGeneral {
 	
 	public static void NombreUsuario() {
-		ViewGeneral.lblNewLabel.setText("Bienvenido: "+logPrincipal.oUsuarioGeneral.getsNombre());
+		ViewGeneral.lblNewLabel.setText("Bienvenido: "+logLogin.oUsuarioGeneral.getsNombre());
 	}
 	
 	public static String[] NombrePeliculasList() {

@@ -14,6 +14,7 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.DefaultPieDataset;
 
 import Controller.CtrlSalaCine;
+
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -65,6 +66,11 @@ public class viewSalaCine extends JDialog {
 		contentPanel.add(btnNewButton_1);
 		
 		JButton btnNewButton = new JButton("<");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CtrlSalaCine.restaEntrada();
+			}
+		});
 		btnNewButton.setFont(new Font("Bebas Neue", Font.PLAIN, 25));
 		btnNewButton.setBounds(134, 473, 50, 23);
 		contentPanel.add(btnNewButton);
@@ -77,6 +83,8 @@ public class viewSalaCine extends JDialog {
 		contentPanel.add(lblNumeroActual);
 		
 		CtrlSalaCine.iniciador();
+		setLocationRelativeTo(null);		
+
 
 
 		{

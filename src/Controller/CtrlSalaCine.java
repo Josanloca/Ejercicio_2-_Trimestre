@@ -12,4 +12,8 @@ public class CtrlSalaCine {
 		logSalaCine.sumaEntrada();
 	}
 
+	public static void restaEntrada() {
+		logSalaCine.restaEntrada();		
+	}
+
 }
