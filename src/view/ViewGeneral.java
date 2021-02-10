@@ -7,6 +7,8 @@ import javax.swing.border.EmptyBorder;
 
 import Controller.CtrlGeneral;
 import Controller.CtrlPeliculas;
+import Start.principal;
+
 import javax.swing.JScrollPane;
 import java.awt.FlowLayout;
 import javax.swing.JList;
@@ -25,6 +27,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class ViewGeneral extends JFrame {
@@ -55,6 +62,21 @@ public class ViewGeneral extends JFrame {
 		setTitle("Cine en casa - General");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 500);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenu mnNewMenu = new JMenu("Menu(Log out)");
+		menuBar.add(mnNewMenu);
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("Log out");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				login.vgFrame.dispose();
+				principal.frame.setVisible(true);
+			}
+		});
+		mnNewMenu.add(mntmNewMenuItem);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));

@@ -76,7 +76,6 @@ public class logLogin {
 
 	@SuppressWarnings("deprecation")
 	public static void cargaUsuario() throws IOException {
-		
 		File fArchivo = new File("guardoUsuario/datosU.obj");
 		FileOutputStream fOut = new FileOutputStream(fArchivo);
 		ObjectOutputStream oOut = new ObjectOutputStream(fOut);

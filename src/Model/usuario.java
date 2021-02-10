@@ -23,6 +23,14 @@ public class usuario implements Serializable{
 		this.sContrasena = sContrasena;
 	}
 	
+	public usuario(int iId_usuario,String sNombre, String sApellido, int iN_Telefono, String sEmail) {
+		this.iId_usuario = iId_usuario;
+		this.sNombre = sNombre;
+		this.sApellido = sApellido;
+		this.iN_Telefono = iN_Telefono;
+		this.sEmail = sEmail;
+	}
+	
 	public usuario(String sNombre, String sApellido, int iN_Telefono, String sEmail, Date dFechaNC,String sContrasena) {
 		this.sNombre = sNombre;
 		this.sApellido = sApellido;

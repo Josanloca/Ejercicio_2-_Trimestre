@@ -35,7 +35,7 @@ public class login extends JFrame {
 	
 	public static nuevoUsuario nUFrame = new nuevoUsuario();
 	public static ViewGeneral vgFrame = new ViewGeneral();
-
+	public static ViewAdmin vaFrame = new ViewAdmin();
 	public static JPanel contentPane;
 	public static JTextField tfCorreo;
 	public static JPasswordField passwordField;
@@ -78,6 +78,12 @@ public class login extends JFrame {
 		menuLogin.add(btnMenNuevoUsuario);
 		
 		JMenuItem btnMenAdmin = new JMenuItem("Administracion");
+		btnMenAdmin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				vaFrame.setVisible(true);
+				principal.frame.setVisible(false);
+			}
+		});
 		btnMenAdmin.setEnabled(false);
 		menuLogin.add(btnMenAdmin);
 		contentPane = new JPanel();
