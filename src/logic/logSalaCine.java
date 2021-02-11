@@ -10,8 +10,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import Controller.ControllerPHP;
-import Model.pelicula;
-import Model.sala_cine;
+import Model.Pelicula;
+import Model.Sala_cine;
 import variables.VariablesGenerales;
 import view.viewPeliculas;
 import view.viewSalaCine;
@@ -20,8 +20,8 @@ public class logSalaCine {
 	public static byte bNumeroEntradas;
 	public static byte bCapacidadMax;
 	private static byte bNEntradasUsuario = 0;
-	private static pelicula oPelicula;
-	public static sala_cine oSalaCine;
+	private static Pelicula oPelicula;
+	public static Sala_cine oSalaCine;
 	
 	private static byte numeroEntradasActuales() {
 		byte bResultado=0;
@@ -64,7 +64,7 @@ public class logSalaCine {
 
 
 	
-	private static sala_cine jsonToSalaCine(String respuesta) {
+	private static Sala_cine jsonToSalaCine(String respuesta) {
 		JSONArray jsonArray = new JSONArray(respuesta);
 		JSONObject jsonObject = jsonArray.getJSONObject(0);
 		byte id_sala_cine = (byte) jsonObject.getInt("id_sala_cine");
@@ -74,7 +74,7 @@ public class logSalaCine {
 		int id_pelicula = jsonObject.getInt("id_pelicula");
 
 
-		return new sala_cine(id_sala_cine,capacidad_max,capacidad_act,oPelicula);
+		return new Sala_cine(id_sala_cine,capacidad_max,capacidad_act,oPelicula);
 	}
 
 

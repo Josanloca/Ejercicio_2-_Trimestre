@@ -11,13 +11,13 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import Controller.ControllerPHP;
-import Model.genero;
-import Model.pelicula;
+import Model.Genero;
+import Model.Pelicula;
 import variables.VariablesGenerales;
 
 public class logGeneral {
 	
-	public static ArrayList<pelicula>  oLPelicula= new ArrayList<pelicula>();
+	public static ArrayList<Pelicula>  oLPelicula= new ArrayList<Pelicula>();
 
 	public static void GetPeliculasList() {
 		try {
@@ -38,7 +38,7 @@ public class logGeneral {
 			byte icca = (byte) jsonObject.getInt("icca");
 			String genero = jsonObject.getString("genero");
 			
-			oLPelicula.add(new pelicula(id_pelicula,nombre_pelicula,icca,(new genero(genero))));
+			oLPelicula.add(new Pelicula(id_pelicula,nombre_pelicula,icca,(new Genero(genero))));
 		}
 	}
 	

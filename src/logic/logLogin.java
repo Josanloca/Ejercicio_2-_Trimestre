@@ -16,13 +16,13 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import Controller.ControllerPHP;
-import Model.usuario;
+import Model.Usuario;
 import variables.VariablesGenerales;
 import view.login;
 
 public class logLogin {
 	
-	public static usuario oUsuarioGeneral;
+	public static Usuario oUsuarioGeneral;
 	
 	@SuppressWarnings("deprecation")
 	public static String LoginUsuario(JTextField tfCorreo, JPasswordField passwordField) {
@@ -32,7 +32,7 @@ public class logLogin {
 		try {
 			x = ControllerPHP.peticionHttp(VariablesGenerales.URL+"/login.php?sEmail="+tfCorreo.getText().toString()+"&sContrasena="+passwordField.getText().toString());
 			sResultado = x;
-			usuario oUs = jsonToUsuario(ControllerPHP.peticionHttp(VariablesGenerales.URL+"/get-usuario.php?email="+tfCorreo.getText().toString()));
+			Usuario oUs = jsonToUsuario(ControllerPHP.peticionHttp(VariablesGenerales.URL+"/get-usuario.php?email="+tfCorreo.getText().toString()));
 			
 			oUsuarioGeneral=oUs;
 			
@@ -45,7 +45,7 @@ public class logLogin {
 	}
 	
 	
-	private static usuario jsonToUsuario(String respuesta) {
+	private static Usuario jsonToUsuario(String respuesta) {
 		JSONArray jsonArray = new JSONArray(respuesta);
 		JSONObject jsonObject = jsonArray.getJSONObject(0);
 		int id_usuario = jsonObject.getInt("id_usuario");
@@ -57,7 +57,7 @@ public class logLogin {
 		String contrasena = jsonObject.getString("contrasena");
 		
 		//System.out.println(""+id_usuario+" "+nombre+" "+apellido+" "+numeroTelefono+" "+email+" "+fecha+" "+contrasena);
-		return new usuario(id_usuario,nombre,apellido,numeroTelefono,email,transformadorStringDate(fecha),contrasena);
+		return new Usuario(id_usuario,nombre,apellido,numeroTelefono,email,transformadorStringDate(fecha),contrasena);
 	}
 	
 	
@@ -79,7 +79,7 @@ public class logLogin {
 		File fArchivo = new File("guardoUsuario/datosU.obj");
 		FileOutputStream fOut = new FileOutputStream(fArchivo);
 		ObjectOutputStream oOut = new ObjectOutputStream(fOut);
-		oOut.writeObject(new usuario(login.tfCorreo.getText().toString(),login.passwordField.getText().toString()));
+		oOut.writeObject(new Usuario(login.tfCorreo.getText().toString(),login.passwordField.getText().toString()));
 		oOut.close();
 	}
 
@@ -94,7 +94,7 @@ public class logLogin {
 				FileInputStream fImput = new FileInputStream(fLectura);
 				ObjectInputStream oImput = new ObjectInputStream(fImput);
 				while(true) {
-					usuario u = (usuario) oImput.readObject();
+					Usuario u = (Usuario) oImput.readObject();
 					login.tfCorreo.setText(u.getsEmail());
 					login.passwordField.setText(u.getsContrasena());
 				}

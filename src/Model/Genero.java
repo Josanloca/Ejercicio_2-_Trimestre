@@ -1,14 +1,14 @@
 package Model;
 
-public class genero {
+public class Genero {
 	
 	private String nombreGenero;
 	
 	
-	public genero() {
+	public Genero() {
 	}
 	
-	public genero(String nombreGenero) {
+	public Genero(String nombreGenero) {
 		this.nombreGenero = nombreGenero;
 	}
 	

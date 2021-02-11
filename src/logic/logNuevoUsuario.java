@@ -19,7 +19,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import Controller.ControllerPHP;
-import Model.usuario;
+import Model.Usuario;
 import variables.VariablesGenerales;
 import view.login;
 import view.nuevoUsuario;
@@ -30,7 +30,7 @@ public class logNuevoUsuario {
 	private static String sText="";
 
 	
-	public static void introducirNuevoUsuario(usuario oUsuario) {
+	public static void introducirNuevoUsuario(Usuario oUsuario) {
 		if(bBooleanUsuario(oUsuario)) {
 			try {
 				String sTring = VariablesGenerales.URL+"/set_new_user.php?nombre="+oUsuario.getsNombre()+"&apellido="+oUsuario.getsApellido()+"&numeroTelefono="+oUsuario.getiN_Telefono()+"&email="+oUsuario.getsEmail()+"&fecha="+new SimpleDateFormat("yyyy-MM-dd").format(oUsuario.getdFechaNC())+"&contrasena="+oUsuario.getsContrasena();
@@ -130,7 +130,7 @@ public class logNuevoUsuario {
 		return base64Image;
 	}
 
-	public static boolean bBooleanUsuario(usuario oUsuario) {
+	public static boolean bBooleanUsuario(Usuario oUsuario) {
 		boolean bRespuesta=false;
 		
 		if((!oUsuario.getsNombre().equals("") && (oUsuario.getsNombre().length() < 45 && oUsuario.getsNombre().length() > 4))){

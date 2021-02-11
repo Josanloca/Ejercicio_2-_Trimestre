@@ -1,18 +1,18 @@
 package Model;
 
-public class pelicula {
+public class Pelicula {
 	
 	private int iIdPelicula;
 	private String sNombrePelicula;
 	private byte bICCA;
-	private genero gGenero;
+	private Genero gGenero;
 	
 	
-	public pelicula() {
+	public Pelicula() {
 
 	}
 	
-	public pelicula(int iIdPelicula, String sNombrePelicula, byte bICCA, genero gGenero) {
+	public Pelicula(int iIdPelicula, String sNombrePelicula, byte bICCA, Genero gGenero) {
 		this.iIdPelicula = iIdPelicula;
 		this.sNombrePelicula = sNombrePelicula;
 		this.bICCA = bICCA;
@@ -37,10 +37,10 @@ public class pelicula {
 	public void setbICCA(byte bICCA) {
 		this.bICCA = bICCA;
 	}
-	public genero getgGenero() {
+	public Genero getgGenero() {
 		return gGenero;
 	}
-	public void setgGenero(genero gGenero) {
+	public void setgGenero(Genero gGenero) {
 		this.gGenero = gGenero;
 	}
 

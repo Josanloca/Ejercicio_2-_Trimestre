@@ -9,7 +9,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import Controller.ControllerPHP;
-import Model.usuario;
+import Model.Usuario;
 import variables.VariablesGenerales;
 import view.ViewAdmin;
 
@@ -17,7 +17,7 @@ public class logAdmin {
 	
 	public static void loadData(){
 		try {
-		List<usuario> resultado=getUsers();
+		List<Usuario> resultado=getUsers();
 				
 		DefaultTableModel modelo = generarTableusuario(resultado);
 		
@@ -36,22 +36,22 @@ public class logAdmin {
 	}
 	
 	@SuppressWarnings("unused")
-	private static List<usuario> getUsers() throws Exception {
+	private static List<Usuario> getUsers() throws Exception {
 		return jsonToUsers(ControllerPHP.peticionHttp(VariablesGenerales.URL+"/get-usuarios.php"));
 	}
 	
-	private static List<usuario> jsonToUsers(String respuesta) {
-		List<usuario> oUsersLis = new ArrayList<usuario>();
+	private static List<Usuario> jsonToUsers(String respuesta) {
+		List<Usuario> oUsersLis = new ArrayList<Usuario>();
 		
 		JSONArray jsonArray = new JSONArray(respuesta);
 		for(byte x = 0 ; x < jsonArray.length(); x++ ) {
 			JSONObject jsonObject = jsonArray.getJSONObject(x);
-			oUsersLis.add(new usuario(jsonObject.getInt("id_usuario"),jsonObject.getString("nombre"),jsonObject.getString("apellido"),jsonObject.getInt("numeroTelefono"),jsonObject.getString("email")));
+			oUsersLis.add(new Usuario(jsonObject.getInt("id_usuario"),jsonObject.getString("nombre"),jsonObject.getString("apellido"),jsonObject.getInt("numeroTelefono"),jsonObject.getString("email")));
 		}
 		return oUsersLis;
 	}
 	
-	public static DefaultTableModel  generarTableusuario(List<usuario> resultado) {
+	public static DefaultTableModel  generarTableusuario(List<Usuario> resultado) {
 
 		DefaultTableModel modelo = new DefaultTableModel();
 		
@@ -63,7 +63,7 @@ public class logAdmin {
 		modelo.addColumn("email");
 		
 		
-		for(usuario c: resultado) {
+		for(Usuario c: resultado) {
 			modelo.addRow(new Object[] {c.getiId_usuario(),c.getsNombre(),c.getsApellido(),c.getiN_Telefono(),c.getsEmail()});
 		}
 

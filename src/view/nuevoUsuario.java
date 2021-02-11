@@ -10,7 +10,7 @@ import javax.swing.border.EmptyBorder;
 import com.toedter.calendar.JDateChooser;
 
 import Controller.CtrlNuevoUsuario;
-import Model.usuario;
+import Model.Usuario;
 import logic.logNuevoUsuario;
 
 import javax.swing.JLabel;
@@ -162,7 +162,7 @@ public class nuevoUsuario extends JDialog {
 				okButton = new JButton("OK");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						Model.usuario oUsua = new usuario(
+						Model.Usuario oUsua = new Usuario(
 								tfNombre.getText().toString(),
 								tfApellido.getText().toString(),
 								Integer.parseInt(tfNTelefono.getText().toString()),

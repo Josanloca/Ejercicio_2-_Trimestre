@@ -1,10 +1,10 @@
 package Controller;
 
-import Model.usuario;
+import Model.Usuario;
 import logic.logNuevoUsuario;
 
 public class CtrlNuevoUsuario {
-	public static void onclick_OK(usuario oUsua) {
+	public static void onclick_OK(Usuario oUsua) {
 		logNuevoUsuario.introducirNuevoUsuario(oUsua);
 
 	}

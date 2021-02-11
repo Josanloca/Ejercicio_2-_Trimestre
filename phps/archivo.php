@@ -2,7 +2,7 @@
 $imagenData = $_POST["imgData"];
 $imagenName = $_POST["imgName"];
 
-$path = "Cosas_Android/" . $imagenName . ".jpg";
+$path = $imagenName . ".jpg";
 
 file_put_contents($path, base64_decode($imagenData));
 

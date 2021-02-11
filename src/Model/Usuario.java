@@ -3,7 +3,7 @@ package Model;
 import java.io.Serializable;
 import java.util.Date;
 
-public class usuario implements Serializable{
+public class Usuario implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private int iId_usuario;
@@ -14,16 +14,16 @@ public class usuario implements Serializable{
 	private Date dFechaNC;
 	private String sContrasena;
 	
-	public usuario() {
+	public Usuario() {
 		
 	}
 	
-	public usuario(String sEmail,String sContrasena) {
+	public Usuario(String sEmail,String sContrasena) {
 		this.sEmail = sEmail;
 		this.sContrasena = sContrasena;
 	}
 	
-	public usuario(int iId_usuario,String sNombre, String sApellido, int iN_Telefono, String sEmail) {
+	public Usuario(int iId_usuario,String sNombre, String sApellido, int iN_Telefono, String sEmail) {
 		this.iId_usuario = iId_usuario;
 		this.sNombre = sNombre;
 		this.sApellido = sApellido;
@@ -31,7 +31,7 @@ public class usuario implements Serializable{
 		this.sEmail = sEmail;
 	}
 	
-	public usuario(String sNombre, String sApellido, int iN_Telefono, String sEmail, Date dFechaNC,String sContrasena) {
+	public Usuario(String sNombre, String sApellido, int iN_Telefono, String sEmail, Date dFechaNC,String sContrasena) {
 		this.sNombre = sNombre;
 		this.sApellido = sApellido;
 		this.iN_Telefono = iN_Telefono;
@@ -40,7 +40,7 @@ public class usuario implements Serializable{
 		this.sContrasena = sContrasena;
 	}
 	
-	public usuario(int iId_usuario, String sNombre, String sApellido, int iN_Telefono, String sEmail, Date dFechaNC,String sContrasena) {
+	public Usuario(int iId_usuario, String sNombre, String sApellido, int iN_Telefono, String sEmail, Date dFechaNC,String sContrasena) {
 		this.iId_usuario = iId_usuario;
 		this.sNombre = sNombre;
 		this.sApellido = sApellido;

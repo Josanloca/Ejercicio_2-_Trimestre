@@ -1,19 +1,19 @@
 package Model;
 
-public class sala_cine {
+public class Sala_cine {
 
 	private byte bId_sala_cine;
 	private byte bCapacidad_Max;
 	private byte bCapacidad_Act;
-	private pelicula oPelicula;
+	private Pelicula oPelicula;
 	
 	
 	
-	public sala_cine() {
+	public Sala_cine() {
 
 	}
 		
-	public sala_cine(byte bId_sala_cine, byte bCapacidad_Max, byte bCapacidad_Act, pelicula oPelicula) {
+	public Sala_cine(byte bId_sala_cine, byte bCapacidad_Max, byte bCapacidad_Act, Pelicula oPelicula) {
 		this.bId_sala_cine = bId_sala_cine;
 		this.bCapacidad_Max = bCapacidad_Max;
 		this.bCapacidad_Act = bCapacidad_Act;
@@ -44,11 +44,11 @@ public class sala_cine {
 		this.bCapacidad_Act = bCapacidad_Act;
 	}
 	
-	public pelicula getoPelicula() {
+	public Pelicula getoPelicula() {
 		return oPelicula;
 	}
 	
-	public void setoPelicula(pelicula oPelicula) {
+	public void setoPelicula(Pelicula oPelicula) {
 		this.oPelicula = oPelicula;
 	}
 
