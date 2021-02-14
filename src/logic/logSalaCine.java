@@ -35,8 +35,8 @@ public class logSalaCine {
 
 				try {
 					oSalaCine = jsonToSalaCine(ControllerPHP.peticionHttp(VariablesGenerales.URL+"/get-sala-cine.php?idpeli="+oPelicula.getiIdPelicula()));
-					bCapacidadMax=Byte.valueOf(ControllerPHP.peticionHttp(VariablesGenerales.URL+"/get-capacidad-max.php?idPelicula="+oPelicula.getiIdPelicula()));
-					bNumeroEntradas=Byte.valueOf(ControllerPHP.peticionHttp(VariablesGenerales.URL+"/get-entradas.php?idPelicula="+oPelicula.getiIdPelicula()));
+					bCapacidadMax=Byte.valueOf(ControllerPHP.peticionHttp(VariablesGenerales.URL+"/get-capacidad-max.php?idPelicula="+oSalaCine.getbId_sala_cine()));
+					bNumeroEntradas=Byte.valueOf(ControllerPHP.peticionHttp(VariablesGenerales.URL+"/get-entradas.php?idPelicula="+oSalaCine.getbId_sala_cine()));
 					bNEntradasUsuario = Byte.valueOf(ControllerPHP.peticionHttp(VariablesGenerales.URL+"/get-Entrada-usuario.php?idUsuario="+logLogin.oUsuarioGeneral.getiId_usuario()+"&idSalCine="+oSalaCine.getbId_sala_cine()));
 				} catch (Exception e) {
 					e.printStackTrace();

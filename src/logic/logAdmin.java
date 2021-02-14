@@ -35,7 +35,6 @@ public class logAdmin {
 		}
 	}
 	
-	@SuppressWarnings("unused")
 	private static List<Usuario> getUsers() throws Exception {
 		return jsonToUsers(ControllerPHP.peticionHttp(VariablesGenerales.URL+"/get-usuarios.php"));
 	}
