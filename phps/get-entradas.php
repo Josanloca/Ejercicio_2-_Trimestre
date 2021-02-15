@@ -14,6 +14,13 @@ while ($row = mysqli_fetch_assoc($result)){
     'capacidad_act'=>$row["capacidad_act"]
     );
 };
+
+
+
+//$salidaJSON = json_encode($miArray);
+
+//echo $salidaJSON;
+
 echo $miArray[0]["capacidad_act"];
 
 mysqli_close($conn);

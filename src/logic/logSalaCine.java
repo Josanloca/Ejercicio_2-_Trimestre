@@ -36,8 +36,11 @@ public class logSalaCine {
 				try {
 					oSalaCine = jsonToSalaCine(ControllerPHP.peticionHttp(VariablesGenerales.URL+"/get-sala-cine.php?idpeli="+oPelicula.getiIdPelicula()));
 					bCapacidadMax=Byte.valueOf(ControllerPHP.peticionHttp(VariablesGenerales.URL+"/get-capacidad-max.php?idPelicula="+oSalaCine.getbId_sala_cine()));
+					System.out.println(bCapacidadMax);
 					bNumeroEntradas=Byte.valueOf(ControllerPHP.peticionHttp(VariablesGenerales.URL+"/get-entradas.php?idPelicula="+oSalaCine.getbId_sala_cine()));
+					System.out.println(bNumeroEntradas);
 					bNEntradasUsuario = Byte.valueOf(ControllerPHP.peticionHttp(VariablesGenerales.URL+"/get-Entrada-usuario.php?idUsuario="+logLogin.oUsuarioGeneral.getiId_usuario()+"&idSalCine="+oSalaCine.getbId_sala_cine()));
+					System.out.println(bNEntradasUsuario);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -80,13 +83,13 @@ public class logSalaCine {
 
 
 
-	@SuppressWarnings("unused")
 	public static void sumaEntrada() {
 		
 		byte bN = 0,bEntrada;
 		//System.out.println(bCapacidadMax+" . "+bNumeroEntradas);
 		if(bCapacidadMax >=bNumeroEntradas) {
-			bNumeroEntradas =  (byte) (bNumeroEntradas+1);
+			bNumeroEntradas++;
+			System.out.println(bNumeroEntradas);
 			try {
 				ControllerPHP.peticionHttp(VariablesGenerales.URL+"/update-nueva-entrada.php?capacidad="+bNumeroEntradas+"&idPeli="+oSalaCine.getbId_sala_cine());
 				
@@ -112,7 +115,7 @@ public class logSalaCine {
 		if(bNumeroEntradas>0) {
 			bNumeroEntradas =  (byte) (bNumeroEntradas-1);
 			try {
-				ControllerPHP.peticionHttp("/update-nueva-entrada.php?capacidad="+bNumeroEntradas+"&idPeli="+oSalaCine.getbId_sala_cine());
+				ControllerPHP.peticionHttp(VariablesGenerales.URL+"/update-nueva-entrada.php?capacidad="+bNumeroEntradas+"&idPeli="+oSalaCine.getbId_sala_cine());
 				bN= Byte.valueOf(ControllerPHP.peticionHttp(VariablesGenerales.URL+"/max-asiento.php?idUsuario="+logLogin.oUsuarioGeneral.getiId_usuario()+"&idSCine="+oSalaCine.getbId_sala_cine()));
 				ControllerPHP.peticionHttp(VariablesGenerales.URL+"/remove-entrada.php?idUsuario="+logLogin.oUsuarioGeneral.getiId_usuario()+"&idCine="+oSalaCine.getbId_sala_cine()+"&nSitio="+bN);
 				iniciador();

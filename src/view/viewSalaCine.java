@@ -84,9 +84,6 @@ public class viewSalaCine extends JDialog {
 		
 		CtrlSalaCine.iniciador();
 		setLocationRelativeTo(null);		
-
-
-
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
