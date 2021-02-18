@@ -44,7 +44,6 @@ public class logLogin {
 		return sResultado;
 	}
 	
-	
 	private static Usuario jsonToUsuario(String respuesta) {
 		JSONArray jsonArray = new JSONArray(respuesta);
 		JSONObject jsonObject = jsonArray.getJSONObject(0);
@@ -59,7 +58,7 @@ public class logLogin {
 		//System.out.println(""+id_usuario+" "+nombre+" "+apellido+" "+numeroTelefono+" "+email+" "+fecha+" "+contrasena);
 		return new Usuario(id_usuario,nombre,apellido,numeroTelefono,email,transformadorStringDate(fecha),contrasena);
 	}
-	
+
 	
 	public static Date transformadorStringDate(String respuesta) {
 		Date date = null;
@@ -73,7 +72,6 @@ public class logLogin {
 		return date ;
 	}
 
-
 	@SuppressWarnings("deprecation")
 	public static void cargaUsuario() throws IOException {
 		File fArchivo = new File("guardoUsuario/datosU.obj");
@@ -82,7 +80,6 @@ public class logLogin {
 		oOut.writeObject(new Usuario(login.tfCorreo.getText().toString(),login.passwordField.getText().toString()));
 		oOut.close();
 	}
-
 
 	@SuppressWarnings("resource")
 	public static boolean isExiste() {
@@ -100,7 +97,6 @@ public class logLogin {
 				}
 				
 				} catch (IOException | ClassNotFoundException e) {
-				//e.printStackTrace();
 			}
 		}		
 		return bResul;

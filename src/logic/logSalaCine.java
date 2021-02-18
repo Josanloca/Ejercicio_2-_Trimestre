@@ -25,14 +25,12 @@ public class logSalaCine {
 	
 	private static byte numeroEntradasActuales() {
 		byte bResultado=0;
-		
 		for(int x=0; x<logGeneral.oLPelicula.size() ; x++) {
 			if(logGeneral.oLPelicula.get(x).getsNombrePelicula().equals(viewPeliculas.lbNombrePelicula.getText())) {
 				oPelicula = logGeneral.oLPelicula.get(x);
 				break;
 			}
 		}
-
 				try {
 					oSalaCine = jsonToSalaCine(ControllerPHP.peticionHttp(VariablesGenerales.URL+"/get-sala-cine.php?idpeli="+oPelicula.getiIdPelicula()));
 					bCapacidadMax=Byte.valueOf(ControllerPHP.peticionHttp(VariablesGenerales.URL+"/get-capacidad-max.php?idPelicula="+oSalaCine.getbId_sala_cine()));
@@ -45,7 +43,6 @@ public class logSalaCine {
 					e.printStackTrace();
 				}
 				bResultado = (byte) (bCapacidadMax - bNumeroEntradas);
-	
 		return bResultado;
 	}
 
@@ -83,6 +80,7 @@ public class logSalaCine {
 
 
 
+	@SuppressWarnings("unused")
 	public static void sumaEntrada() {
 		
 		byte bN = 0,bEntrada;

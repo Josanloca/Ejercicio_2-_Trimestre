@@ -43,7 +43,6 @@ public class login extends JFrame {
 
 
 	public login() {
-		
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
@@ -66,7 +65,7 @@ public class login extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
-		JMenu menuLogin = new JMenu("Ayuda");
+		JMenu menuLogin = new JMenu("Opciones");
 		menuBar.add(menuLogin);
 		
 		JMenuItem btnMenNuevoUsuario = new JMenuItem("No tengo cuenta");
@@ -130,7 +129,6 @@ public class login extends JFrame {
 		contentPane.add(passwordField);
 		
 		boolean b = CtrlLogin.isExiste();
-
 		
 		cbRecordatorio = new JCheckBox("");
 		cbRecordatorio.setBounds(185, 225, 18, 18);

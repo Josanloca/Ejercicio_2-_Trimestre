@@ -31,9 +31,6 @@ public class viewSalaCine extends JDialog {
 	public static JFreeChart chart;
 	public static JLabel lblNumeroActual= new JLabel("0");
 	
-	
-	
-
 	public viewSalaCine() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icono.png")));
 
@@ -52,7 +49,7 @@ public class viewSalaCine extends JDialog {
 		
 		JLabel lblNewLabel = new JLabel("Entradas reservadas: ");
 		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setBounds(190, 450, 107, 14);
+		lblNewLabel.setBounds(181, 450, 129, 14);
 		contentPanel.add(lblNewLabel);
 		
 		JButton btnNewButton_1 = new JButton(">");
@@ -62,7 +59,7 @@ public class viewSalaCine extends JDialog {
 			}
 		});
 		btnNewButton_1.setFont(new Font("Bebas Neue", Font.PLAIN, 25));
-		btnNewButton_1.setBounds(301, 473, 53, 23);
+		btnNewButton_1.setBounds(293, 473, 53, 23);
 		contentPanel.add(btnNewButton_1);
 		
 		JButton btnNewButton = new JButton("<");
@@ -72,7 +69,7 @@ public class viewSalaCine extends JDialog {
 			}
 		});
 		btnNewButton.setFont(new Font("Bebas Neue", Font.PLAIN, 25));
-		btnNewButton.setBounds(134, 473, 50, 23);
+		btnNewButton.setBounds(128, 473, 50, 23);
 		contentPanel.add(btnNewButton);
 		
 		lblNumeroActual = new JLabel("");
